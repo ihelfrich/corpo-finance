@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CORPO FINANCE // Night City Capital Markets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   NIGHT CITY DESIGN SYSTEM
+   Palette: CP2077-inspired (fan design)
+   ═══════════════════════════════════════════ */
+:root {
+  --yellow:   #fcee09;
+  --yellow-dim: rgba(252,238,9,0.15);
+  --yellow-glow: 0 0 8px #fcee09, 0 0 20px rgba(252,238,9,0.4);
+  --cyan:     #00d4ff;
+  --cyan-dim: rgba(0,212,255,0.12);
+  --cyan-glow: 0 0 8px #00d4ff, 0 0 20px rgba(0,212,255,0.4);
+  --magenta:  #ff2a6d;
+  --mag-glow: 0 0 8px #ff2a6d, 0 0 20px rgba(255,42,109,0.4);
+  --dark:     #080810;
+  --card:     #0e0e1a;
+  --card2:    #12121f;
+  --border:   rgba(252,238,9,0.18);
+  --border-c: rgba(0,212,255,0.18);
+  --text:     #d8d8e8;
+  --muted:    #7a7a9a;
+  --font-h:   'Orbitron', monospace;
+  --font-b:   'Rajdhani', sans-serif;
+  --font-m:   'Share Tech Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: var(--font-b);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── SCANLINES overlay ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 3px; }
+
+/* ══════════════════════════════════════
+   HERO
+   ══════════════════════════════════════ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+/* CSS city skyline */
+#hero::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 55%;
+  background:
+    /* Building 1 */
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 2% 100% / 6% 60% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 8% 100% / 4% 75% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 12% 100% / 5% 50% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 17% 100% / 3% 85% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 20% 100% / 7% 45% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 27% 100% / 4% 70% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 31% 100% / 5% 55% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 36% 100% / 6% 90% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 42% 100% / 3% 65% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 45% 100% / 5% 40% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 50% 100% / 4% 80% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 54% 100% / 6% 60% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 60% 100% / 3% 72% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 63% 100% / 5% 50% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 68% 100% / 4% 88% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 72% 100% / 6% 55% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 78% 100% / 3% 68% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 81% 100% / 5% 78% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 86% 100% / 4% 45% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 90% 100% / 6% 62% no-repeat,
+    linear-gradient(to top, #0e0e1a 0%, #0e0e1a 100%) 96% 100% / 3% 50% no-repeat;
+  z-index: 0;
+}
+
+/* Neon horizon glow */
+#hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--magenta), var(--cyan), var(--yellow), var(--cyan), var(--magenta), transparent);
+  box-shadow: 0 0 30px var(--cyan), 0 0 60px rgba(0,212,255,0.3);
+  z-index: 1;
+}
+
+/* Animated neon grid floor */
+.grid-floor {
+  position: absolute;
+  bottom: 0; left: -20%; right: -20%;
+  height: 40%;
+  background:
+    linear-gradient(rgba(0,212,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.06) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: perspective(400px) rotateX(60deg);
+  transform-origin: bottom;
+  z-index: 0;
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+.hero-eyebrow {
+  font-family: var(--font-m);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--cyan);
+  text-shadow: var(--cyan-glow);
+  margin-bottom: 1.5rem;
+  animation: flicker 4s infinite;
+}
+
+@keyframes flicker {
+  0%,19%,21%,23%,25%,54%,56%,100% { opacity: 1; }
+  20%,24%,55% { opacity: 0.4; }
+}
+
+.hero-title {
+  font-family: var(--font-h);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  color: var(--yellow);
+  text-shadow: var(--yellow-glow);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+}
+.glitch::before {
+  color: var(--cyan);
+  text-shadow: none;
+  animation: glitch-1 3s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+.glitch::after {
+  color: var(--magenta);
+  text-shadow: none;
+  animation: glitch-2 3s infinite;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+@keyframes glitch-1 {
+  0%,100% { transform: none; opacity: 0; }
+  7%,8% { transform: translate(-2px, 0); opacity: 0.8; }
+  9% { transform: none; opacity: 0; }
+  62%,63% { transform: translate(2px, 0); opacity: 0.8; }
+  64% { transform: none; opacity: 0; }
+}
+@keyframes glitch-2 {
+  0%,100% { transform: none; opacity: 0; }
+  33%,34% { transform: translate(2px, 0); opacity: 0.8; }
+  35% { transform: none; opacity: 0; }
+  85%,86% { transform: translate(-2px, 0); opacity: 0.8; }
+  87% { transform: none; opacity: 0; }
+}
+
+.hero-subtitle {
+  font-family: var(--font-h);
+  font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-shadow: var(--cyan-glow);
+  margin-bottom: 2rem;
+}
+
+.hero-desc {
+  font-family: var(--font-b);
+  font-size: 1.15rem;
+  color: var(--text);
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  font-weight: 500;
+}
+
+.btn-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.btn {
+  font-family: var(--font-h);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 0.85rem 2rem;
+  border: 2px solid;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+.btn-primary {
+  background: var(--yellow);
+  color: #000;
+  border-color: var(--yellow);
+  box-shadow: var(--yellow-glow);
+}
+.btn-primary:hover { background: #fff200; box-shadow: 0 0 20px #fcee09, 0 0 40px rgba(252,238,9,0.5); }
+.btn-secondary {
+  background: transparent;
+  color: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: var(--cyan-glow);
+}
+.btn-secondary:hover { background: var(--cyan-dim); }
+
+/* ══════════════════════════════════════
+   NAV
+   ══════════════════════════════════════ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8,8,16,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 56px;
+  overflow-x: auto;
+}
+.nav-logo {
+  font-family: var(--font-h);
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: var(--yellow);
+  text-shadow: var(--yellow-glow);
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+}
+.nav-links { display: flex; gap: 0; }
+.nav-links a {
+  font-family: var(--font-m);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0 1.2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--yellow); border-bottom-color: var(--yellow); }
+
+/* ══════════════════════════════════════
+   SECTIONS
+   ══════════════════════════════════════ */
+section { padding: 5rem 2rem; }
+.container { max-width: 1200px; margin: 0 auto; }
+
+.section-label {
+  font-family: var(--font-m);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--cyan);
+  text-shadow: var(--cyan-glow);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--font-h);
+  font-size: clamp(1.5rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: var(--yellow);
+  text-shadow: var(--yellow-glow);
+  margin-bottom: 0.5rem;
+}
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+  max-width: 700px;
+}
+
+/* ══════════════════════════════════════
+   MODULE CARDS (13 districts)
+   ══════════════════════════════════════ */
+#modules { background: var(--card); }
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.module-card {
+  background: var(--dark);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.25s;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+.module-card:hover {
+  border-color: var(--yellow);
+  box-shadow: 0 0 20px rgba(252,238,9,0.12), inset 0 0 20px rgba(252,238,9,0.03);
+  transform: translateY(-2px);
+}
+
+.module-number {
+  font-family: var(--font-m);
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.25rem;
+}
+.module-codename {
+  font-family: var(--font-h);
+  font-size: 0.7rem;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-shadow: var(--cyan-glow);
+  margin-bottom: 0.4rem;
+}
+.module-topic {
+  font-family: var(--font-b);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--yellow);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.module-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.module-list li {
+  font-size: 0.9rem;
+  color: var(--text);
+  padding-left: 1rem;
+  position: relative;
+}
+.module-list li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--cyan);
+}
+.module-formula {
+  font-family: var(--font-m);
+  font-size: 0.78rem;
+  color: var(--yellow);
+  background: var(--yellow-dim);
+  border-left: 2px solid var(--yellow);
+  padding: 0.4rem 0.75rem;
+  margin-top: 1rem;
+  letter-spacing: 0.02em;
+}
+.module-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: var(--font-m);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
+  background: var(--yellow-dim);
+  color: var(--yellow);
+  border: 1px solid var(--border);
+}
+
+/* ══════════════════════════════════════
+   CALCULATORS
+   ══════════════════════════════════════ */
+#calc { background: var(--dark); }
+
+.calc-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.calc-tab {
+  font-family: var(--font-m);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  transition: all 0.2s;
+}
+.calc-tab.active { color: var(--yellow); border-bottom-color: var(--yellow); }
+.calc-tab:hover { color: var(--text); }
+
+.calc-panel { display: none; }
+.calc-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+@media(max-width:700px){ .calc-panel.active { grid-template-columns: 1fr; } }
+
+.calc-inputs { display: flex; flex-direction: column; gap: 1rem; }
+
+.input-group { display: flex; flex-direction: column; gap: 0.35rem; }
+.input-group label {
+  font-family: var(--font-m);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--cyan);
+}
+.input-group input, .input-group select {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--yellow);
+  font-family: var(--font-m);
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  outline: none;
+  transition: border 0.2s;
+  width: 100%;
+}
+.input-group input:focus, .input-group select:focus { border-color: var(--yellow); }
+.input-group select option { background: var(--card); color: var(--text); }
+
+.btn-calc {
+  font-family: var(--font-h);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 0.85rem;
+  border: 2px solid var(--yellow);
+  background: var(--yellow);
+  color: #000;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: all 0.2s;
+  width: 100%;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.btn-calc:hover { background: #fff200; box-shadow: var(--yellow-glow); }
+
+.calc-output {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+.output-title {
+  font-family: var(--font-m);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.output-value {
+  font-family: var(--font-h);
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--yellow);
+  text-shadow: var(--yellow-glow);
+  margin-bottom: 0.5rem;
+}
+.output-label { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
+.output-breakdown {
+  font-family: var(--font-m);
+  font-size: 0.78rem;
+  color: var(--text);
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  white-space: pre-line;
+  line-height: 1.8;
+}
+
+/* ══════════════════════════════════════
+   FORMULAS REFERENCE
+   ══════════════════════════════════════ */
+#formulas { background: var(--card); }
+
+.formula-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1rem;
+}
+.formula-block {
+  background: var(--dark);
+  border: 1px solid var(--border-c);
+  padding: 1.25rem;
+}
+.formula-topic {
+  font-family: var(--font-m);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  text-shadow: var(--cyan-glow);
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-c);
+  padding-bottom: 0.5rem;
+}
+.formula-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.75rem;
+}
+.formula-name { font-size: 0.8rem; color: var(--muted); font-family: var(--font-b); font-weight: 600; }
+.formula-eq {
+  font-family: var(--font-m);
+  font-size: 0.82rem;
+  color: var(--yellow);
+  background: var(--yellow-dim);
+  padding: 0.3rem 0.6rem;
+  letter-spacing: 0.02em;
+  word-break: break-all;
+}
+.formula-note { font-size: 0.78rem; color: var(--muted); }
+
+/* ══════════════════════════════════════
+   GROUP PROJECT
+   ══════════════════════════════════════ */
+#project { background: var(--dark); }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+@media(max-width:750px){ .project-grid { grid-template-columns: 1fr; } }
+
+.project-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.75rem;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+}
+.project-block h3 {
+  font-family: var(--font-h);
+  font-size: 0.85rem;
+  color: var(--yellow);
+  letter-spacing: 0.12em;
+  margin-bottom: 1.2rem;
+  text-shadow: var(--yellow-glow);
+}
+.step-list { list-style: none; counter-reset: steps; }
+.step-list li {
+  counter-increment: steps;
+  position: relative;
+  padding: 0.6rem 0 0.6rem 2.5rem;
+  border-bottom: 1px solid rgba(252,238,9,0.06);
+  font-size: 0.92rem;
+  color: var(--text);
+}
+.step-list li::before {
+  content: counter(steps, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  font-family: var(--font-m);
+  font-size: 0.7rem;
+  color: var(--cyan);
+  top: 0.75rem;
+}
+.step-formula {
+  font-family: var(--font-m);
+  font-size: 0.75rem;
+  color: var(--yellow);
+  display: block;
+  margin-top: 0.2rem;
+}
+
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  padding-bottom: 1.2rem;
+}
+.timeline-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 3.3rem;
+  top: 2.2rem;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+.timeline-date {
+  font-family: var(--font-m);
+  font-size: 0.7rem;
+  color: var(--cyan);
+  min-width: 60px;
+  padding-top: 0.15rem;
+}
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--yellow);
+  box-shadow: var(--yellow-glow);
+  flex-shrink: 0;
+  margin-top: 0.3rem;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+.timeline-task { font-size: 0.9rem; color: var(--text); }
+
+/* ══════════════════════════════════════
+   RESOURCES
+   ══════════════════════════════════════ */
+#resources { background: var(--card); }
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.resource-card {
+  background: var(--dark);
+  border: 1px solid var(--border-c);
+  padding: 1.25rem;
+  transition: all 0.2s;
+}
+.resource-card:hover { border-color: var(--cyan); box-shadow: 0 0 15px rgba(0,212,255,0.1); }
+.resource-tag {
+  font-family: var(--font-m);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--magenta);
+  margin-bottom: 0.5rem;
+}
+.resource-name {
+  font-family: var(--font-b);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 0.4rem;
+}
+.resource-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; }
+.resource-link {
+  font-family: var(--font-m);
+  font-size: 0.7rem;
+  color: var(--yellow);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+}
+.resource-link:hover { text-shadow: var(--yellow-glow); }
+
+/* ══════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════ */
+footer {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+}
+.footer-logo {
+  font-family: var(--font-h);
+  font-size: 0.8rem;
+  color: var(--yellow);
+  text-shadow: var(--yellow-glow);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.75rem;
+}
+.footer-text { font-family: var(--font-m); font-size: 0.7rem; color: var(--muted); line-height: 1.8; }
+.footer-text a { color: var(--muted); }
+
+/* ══════════════════════════════════════
+   UTILITY
+   ══════════════════════════════════════ */
+.neon-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--yellow), var(--cyan), transparent);
+  margin: 0;
+  box-shadow: 0 0 10px rgba(0,212,255,0.3);
+}
+
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.stat-item { display: flex; flex-direction: column; }
+.stat-value {
+  font-family: var(--font-h);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--yellow);
+  text-shadow: var(--yellow-glow);
+  line-height: 1;
+}
+.stat-label { font-family: var(--font-m); font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); }
+
+@media (max-width: 600px) {
+  .modules-grid { grid-template-columns: 1fr; }
+  .formula-grid { grid-template-columns: 1fr; }
+  .resources-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     HERO
+     ══════════════════════════════════════ -->
+<section id="hero">
+  <div class="grid-floor"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">// SYSTEM ONLINE // PEPPERDINE MBA // FINC 603 //</p>
+    <h1 class="hero-title">
+      <span class="glitch" data-text="CORPO">CORPO</span><br>
+      FINANCE
+    </h1>
+    <p class="hero-subtitle">NIGHT CITY CAPITAL MARKETS</p>
+    <p class="hero-desc">
+      MBA-level corporate finance — from cash flow mechanics to WACC, M&M capital structure, DCF valuation, and financial options. Built for the streets of Night City.
+    </p>
+    <div class="btn-row">
+      <a href="#modules" class="btn btn-primary">ACCESS MODULES</a>
+      <a href="#calc" class="btn btn-secondary">RUN CALCULATOR</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     NAV
+     ══════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">CF//NIGHT CITY</span>
+    <div class="nav-links">
+      <a href="#modules">MODULES</a>
+      <a href="#calc">CALCULATORS</a>
+      <a href="#formulas">FORMULAS</a>
+      <a href="#project">GROUP PROJECT</a>
+      <a href="#resources">RESOURCES</a>
+    </div>
+  </div>
+</nav>
+
+<div class="neon-divider"></div>
+
+<!-- ══════════════════════════════════════
+     MODULES
+     ══════════════════════════════════════ -->
+<section id="modules">
+  <div class="container">
+    <p class="section-label">// CURRICULUM DISTRICTS //</p>
+    <h2 class="section-title">13 MODULES</h2>
+    <p class="section-sub">Corporate finance from first principles to DCF valuation — structured as Night City districts.</p>
+
+    <div class="stat-row">
+      <div class="stat-item"><span class="stat-value">13</span><span class="stat-label">MODULES</span></div>
+      <div class="stat-item"><span class="stat-value">25%</span><span class="stat-label">MIDTERM WEIGHT</span></div>
+      <div class="stat-item"><span class="stat-value">20%</span><span class="stat-label">GROUP PROJECT</span></div>
+      <div class="stat-item"><span class="stat-value">DCF</span><span class="stat-label">FINAL DELIVERABLE</span></div>
+    </div>
+
+    <div class="modules-grid">
+
+      <!-- W1 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 1</div>
+        <div class="module-number">MODULE // 01</div>
+        <div class="module-codename">MEGACORP GOVERNANCE PROTOCOLS</div>
+        <div class="module-topic">Corporate Finance &amp; Governance</div>
+        <ul class="module-list">
+          <li>Goal of the firm: maximize shareholder value (NPV &gt; 0)</li>
+          <li>Investment decisions vs. financing decisions</li>
+          <li>Agency problem: managers vs. shareholders</li>
+          <li>Free Cash Flow (FCF) = NOPAT − Net investment in OC</li>
+          <li>EVA = NOPAT − (WACC × Invested Capital); MVA = PV(EVA)</li>
+          <li>ESG as a long-run value driver</li>
+        </ul>
+        <div class="module-formula">FCF = EBIT(1−T) − ΔNOWC − ΔNet PPE</div>
+      </div>
+
+      <!-- W2 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 2</div>
+        <div class="module-number">MODULE // 02</div>
+        <div class="module-codename">NETRUNNER DATA EXTRACTION</div>
+        <div class="module-topic">Financial Statement Analysis</div>
+        <ul class="module-list">
+          <li>DuPont decomposition: ROE = Profit Margin × Asset Turnover × Equity Multiplier</li>
+          <li>Liquidity, leverage, efficiency, profitability ratios</li>
+          <li>Additional Funds Needed (AFN) = spontaneous liabilities increase</li>
+          <li>Pro forma forecasting from % of sales</li>
+          <li>Book value vs. market value distinction</li>
+        </ul>
+        <div class="module-formula">AFN = (A*/S₀)ΔS − (L*/S₀)ΔS − MS₁(1−d)</div>
+      </div>
+
+      <!-- W3 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 3</div>
+        <div class="module-number">MODULE // 03</div>
+        <div class="module-codename">TEMPORAL CREDIT CYCLES</div>
+        <div class="module-topic">Time Value of Money</div>
+        <ul class="module-list">
+          <li>FV = PV × (1+r)^t — compounding over t periods</li>
+          <li>PV = FV / (1+r)^t — discounting at rate r</li>
+          <li>Annuity PV = PMT × [1 − (1+r)^−n] / r</li>
+          <li>Perpetuity PV = C / r (no end date)</li>
+          <li>EAR = (1 + APR/m)^m − 1 ≠ APR when m &gt; 1</li>
+          <li>Excel: PV(), FV(), PMT(), RATE(), NPER()</li>
+        </ul>
+        <div class="module-formula">EAR = (1 + APR/m)^m − 1</div>
+      </div>
+
+      <!-- W4 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 4</div>
+        <div class="module-number">MODULE // 04</div>
+        <div class="module-codename">RISK CALIBRATION MATRIX</div>
+        <div class="module-topic">Risk, Return &amp; CAPM</div>
+        <ul class="module-list">
+          <li>Diversification eliminates specific risk; market risk remains</li>
+          <li>Beta (β) = Cov(R_i, R_M) / Var(R_M) — slope of regression on S&P 500</li>
+          <li>CAPM: r_i = r_f + β(r_M − r_f)</li>
+          <li>Security Market Line (SML): expected return as linear function of β</li>
+          <li>β = 1 → market-like; β &gt; 1 → aggressive; β &lt; 1 → defensive</li>
+          <li>Only systematic (market) risk earns a risk premium</li>
+        </ul>
+        <div class="module-formula">r_i = r_f + β × (r_M − r_f)</div>
+      </div>
+
+      <!-- W5 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 5</div>
+        <div class="module-number">MODULE // 05</div>
+        <div class="module-codename">ASSET PRICING ENGINE</div>
+        <div class="module-topic">Bond &amp; Stock Valuation</div>
+        <ul class="module-list">
+          <li>Bond price = PV of coupons + PV of par (discount at YTM)</li>
+          <li>Price ↑ when YTM ↓; inverse relationship always holds</li>
+          <li>YTC: solve for r using call price at call date instead of par</li>
+          <li>Gordon (DDM): P₀ = D₁ / (r − g) when g &lt; r</li>
+          <li>Supernormal growth: discount each phase separately, then add</li>
+          <li>P/E and EV/EBITDA as relative valuation cross-checks</li>
+        </ul>
+        <div class="module-formula">P₀ = D₁ / (r − g)   [Gordon Growth Model]</div>
+      </div>
+
+      <!-- W6 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 6</div>
+        <div class="module-number">MODULE // 06</div>
+        <div class="module-codename">HYBRID WARE CONTRACTS</div>
+        <div class="module-topic">Hybrid Securities</div>
+        <ul class="module-list">
+          <li>Preferred stock: fixed dividend, senior to common, no voting rights</li>
+          <li>Cost of preferred: r_ps = D_ps / P₀ (perpetuity, no growth)</li>
+          <li>Warrants: long-dated call options issued by the firm itself</li>
+          <li>Convertible bonds: debt with an embedded call on the stock</li>
+          <li>Hybrid = lower rate debt + option premium to issuer</li>
+          <li>Dilution effect when warrants/converts are exercised</li>
+        </ul>
+        <div class="module-formula">r_ps = D_ps / P₀(1−F)  [preferred cost of capital]</div>
+      </div>
+
+      <!-- W7 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 7</div>
+        <div class="module-number">MODULE // 07</div>
+        <div class="module-codename">PROJECT DELTA CLEARANCE</div>
+        <div class="module-topic">Capital Budgeting: NPV, IRR, MIRR</div>
+        <ul class="module-list">
+          <li>NPV = Σ[FCF_t / (1+r)^t] — the correct universal rule</li>
+          <li>IRR: set NPV=0 and solve for r; accept if IRR &gt; WACC</li>
+          <li>MIRR: reinvest CFs at WACC, finance neg. CFs at cost of capital</li>
+          <li>Payback, Discounted Payback: secondary screens (ignore distant CFs)</li>
+          <li>Profitability Index = NPV / Cost (for capital rationing)</li>
+          <li>EAA: annualize NPV for unequal lives comparison</li>
+        </ul>
+        <div class="module-formula">NPV = Σ FCF_t/(1+r)^t − C₀ &gt; 0 → ACCEPT</div>
+      </div>
+
+      <!-- W8 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 8–9</div>
+        <div class="module-number">MODULE // 08</div>
+        <div class="module-codename">WEIGHTED NEURAL NETWORK COST</div>
+        <div class="module-topic">WACC</div>
+        <ul class="module-list">
+          <li>WACC = w_d × r_d(1−T) + w_ps × r_ps + w_e × r_e</li>
+          <li>Weights MUST be market-value weights, not book values</li>
+          <li>Cost of equity: r_e via CAPM = r_f + β(r_M − r_f)</li>
+          <li>Cost of debt: r_d = YTM on existing bonds (after-tax = r_d × (1−T))</li>
+          <li>WACC is the minimum acceptable return on average-risk projects</li>
+          <li>Use firm WACC only when project risk ≈ firm's existing risk</li>
+        </ul>
+        <div class="module-formula">WACC = w_d r_d(1−T) + w_ps r_ps + w_e r_e</div>
+      </div>
+
+      <!-- W10 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 10</div>
+        <div class="module-number">MODULE // 09</div>
+        <div class="module-codename">LEVERAGE OPTIMIZATION PROTOCOL</div>
+        <div class="module-topic">Capital Structure: M&amp;M &amp; Hamada</div>
+        <ul class="module-list">
+          <li>M&M I (no tax): V_L = V_U — capital structure is irrelevant</li>
+          <li>M&M II (no tax): r_e rises with leverage to offset cheaper debt</li>
+          <li>M&M with taxes: V_L = V_U + T×D (interest tax shield adds value)</li>
+          <li>Trade-off theory: optimal D/E balances tax shield vs. distress costs</li>
+          <li>Pecking order: prefer retained earnings &gt; debt &gt; equity</li>
+          <li>Hamada: β_L = β_U [1 + (1−T)(D/E)] — re-lever / unlever beta</li>
+        </ul>
+        <div class="module-formula">β_L = β_U × [1 + (1−T)(D/E)]  [Hamada equation]</div>
+      </div>
+
+      <!-- W11 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 11</div>
+        <div class="module-number">MODULE // 10</div>
+        <div class="module-codename">EDDIES DISTRIBUTION NETWORK</div>
+        <div class="module-topic">Dividends &amp; Working Capital</div>
+        <ul class="module-list">
+          <li>Residual dividend model: pay out what is left after funding all positive-NPV projects</li>
+          <li>Dividend irrelevance (M&M): in perfect markets, policy doesn't matter</li>
+          <li>Signaling: dividend cuts signal distress; initiations signal confidence</li>
+          <li>Cash Conversion Cycle: CCC = DSO + DSI − DPO</li>
+          <li>Cost of trade credit = (Discount% / (1 − Discount%)) × (365 / Days foregone)</li>
+          <li>Repurchases vs. dividends: tax-advantaged when capital gains &lt; income tax</li>
+        </ul>
+        <div class="module-formula">CCC = DSO + DSI − DPO</div>
+      </div>
+
+      <!-- W12 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 12</div>
+        <div class="module-number">MODULE // 11</div>
+        <div class="module-codename">GLOBAL NET CORRIDORS</div>
+        <div class="module-topic">International Finance</div>
+        <ul class="module-list">
+          <li>Direct quote: $/FC. Indirect: FC/$. Cross rates via triangular arbitrage</li>
+          <li>CIRP: F = S × (1 + r_d) / (1 + r_f) — forward rate pricing</li>
+          <li>PPP: E[S_t] = S₀ × [(1 + π_d) / (1 + π_f)]^t</li>
+          <li>International NPV: convert foreign FCFs at expected forward rates, discount at domestic WACC</li>
+          <li>Political risk, expropriation, repatriation restrictions</li>
+          <li>Currency hedging with forwards, swaps, money market hedge</li>
+        </ul>
+        <div class="module-formula">CIRP: F = S × (1 + r_d)/(1 + r_f)</div>
+      </div>
+
+      <!-- W13 -->
+      <div class="module-card">
+        <div class="module-badge">WEEK 13</div>
+        <div class="module-number">MODULE // 12</div>
+        <div class="module-codename">DERIVATIVES STREET</div>
+        <div class="module-topic">Financial Options</div>
+        <ul class="module-list">
+          <li>Call: right to BUY at K; payoff = max(S_T − K, 0)</li>
+          <li>Put: right to SELL at K; payoff = max(K − S_T, 0)</li>
+          <li>Put-call parity: C − P = S₀ − PV(K) [European, no dividends]</li>
+          <li>Binomial: risk-neutral probability p = (e^{rΔt} − d)/(u − d)</li>
+          <li>Real options: expand (call), abandon (put), delay (call)</li>
+          <li>Black-Scholes: C = S×N(d₁) − K×e^{-rT}×N(d₂)</li>
+        </ul>
+        <div class="module-formula">Put-Call Parity: C − P = S₀ − K·e^{−rT}</div>
+      </div>
+
+      <!-- GROUP PROJECT -->
+      <div class="module-card" style="border-color: rgba(255,42,109,0.4);">
+        <div class="module-badge" style="color:var(--magenta); background:rgba(255,42,109,0.1); border-color:rgba(255,42,109,0.3);">JULY 25</div>
+        <div class="module-number">MODULE // 13</div>
+        <div class="module-codename" style="color:var(--magenta); text-shadow: var(--mag-glow);">VALUATION STRIKE MISSION</div>
+        <div class="module-topic">Group Project: DCF Firm Valuation</div>
+        <ul class="module-list">
+          <li>Pick a publicly traded company; obtain 10-K from SEC EDGAR</li>
+          <li>Build FCF from scratch: NOPAT → NOWC → TNOC → FCF</li>
+          <li>Calculate WACC from market data (beta, r_f, ERP, cost of debt)</li>
+          <li>Project FCFs for 5 years × 3 scenarios (optimistic/base/pessimistic)</li>
+          <li>Compute enterprise value → equity value → intrinsic price per share</li>
+          <li>Compare to current stock price; conclude over/under/fairly valued</li>
+        </ul>
+        <div class="module-formula" style="border-color:var(--magenta)">Special session: Sat July 25 · West LA Campus · 9am–4pm</div>
+      </div>
+
+    </div><!-- /.modules-grid -->
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ══════════════════════════════════════
+     CALCULATORS
+     ══════════════════════════════════════ -->
+<section id="calc">
+  <div class="container">
+    <p class="section-label">// FINANCIAL COMPUTATION SUITE //</p>
+    <h2 class="section-title">CALCULATORS</h2>
+    <p class="section-sub">Interactive TVM, WACC, and DCF valuation — show your work below, explain the intuition to your professor.</p>
+
+    <div class="calc-tabs">
+      <button class="calc-tab active" onclick="switchTab('tvm',this)">TVM</button>
+      <button class="calc-tab" onclick="switchTab('wacc',this)">WACC</button>
+      <button class="calc-tab" onclick="switchTab('dcf',this)">DCF VALUATION</button>
+    </div>
+
+    <!-- TVM -->
+    <div id="tab-tvm" class="calc-panel active">
+      <div class="calc-inputs">
+        <div class="input-group">
+          <label>SOLVE FOR</label>
+          <select id="tvm-solve">
+            <option value="fv">Future Value (FV)</option>
+            <option value="pv">Present Value (PV)</option>
+            <option value="pmt">Payment (PMT)</option>
+            <option value="rate">Interest Rate (r)</option>
+            <option value="nper">Periods (N)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>PRESENT VALUE ($)</label>
+          <input type="number" id="tvm-pv" placeholder="e.g. 1000" step="any">
+        </div>
+        <div class="input-group">
+          <label>FUTURE VALUE ($)</label>
+          <input type="number" id="tvm-fv" placeholder="e.g. 1500" step="any">
+        </div>
+        <div class="input-group">
+          <label>PAYMENT / PERIOD ($)</label>
+          <input type="number" id="tvm-pmt" placeholder="e.g. 100 (annuity)" step="any">
+        </div>
+        <div class="input-group">
+          <label>ANNUAL RATE (% e.g. 8)</label>
+          <input type="number" id="tvm-rate" placeholder="e.g. 8" step="any">
+        </div>
+        <div class="input-group">
+          <label>NUMBER OF PERIODS (years)</label>
+          <input type="number" id="tvm-n" placeholder="e.g. 10" step="any">
+        </div>
+        <div class="input-group">
+          <label>COMPOUNDING PERIODS / YEAR</label>
+          <select id="tvm-m">
+            <option value="1">Annual (1)</option>
+            <option value="2">Semi-annual (2)</option>
+            <option value="4">Quarterly (4)</option>
+            <option value="12">Monthly (12)</option>
+            <option value="365">Daily (365)</option>
+          </select>
+        </div>
+        <button class="btn-calc" onclick="calcTVM()">COMPUTE ›</button>
+      </div>
+      <div class="calc-output">
+        <div class="output-title">// COMPUTATION OUTPUT //</div>
+        <div class="output-value" id="tvm-result">—</div>
+        <div class="output-label" id="tvm-label">Enter values and compute</div>
+        <div class="output-breakdown" id="tvm-breakdown"></div>
+      </div>
+    </div>
+
+    <!-- WACC -->
+    <div id="tab-wacc" class="calc-panel">
+      <div class="calc-inputs">
+        <div class="input-group">
+          <label>RISK-FREE RATE r_f (% e.g. 4.5)</label>
+          <input type="number" id="w-rf" placeholder="4.5" step="any">
+        </div>
+        <div class="input-group">
+          <label>BETA (β)</label>
+          <input type="number" id="w-beta" placeholder="1.2" step="any">
+        </div>
+        <div class="input-group">
+          <label>MARKET RISK PREMIUM r_M−r_f (% e.g. 6)</label>
+          <input type="number" id="w-mrp" placeholder="6" step="any">
+        </div>
+        <div class="input-group">
+          <label>PRE-TAX COST OF DEBT r_d (%)</label>
+          <input type="number" id="w-rd" placeholder="7" step="any">
+        </div>
+        <div class="input-group">
+          <label>TAX RATE T (%)</label>
+          <input type="number" id="w-tax" placeholder="21" step="any">
+        </div>
+        <div class="input-group">
+          <label>MARKET VALUE OF EQUITY ($M)</label>
+          <input type="number" id="w-e" placeholder="e.g. 5000" step="any">
+        </div>
+        <div class="input-group">
+          <label>MARKET VALUE OF DEBT ($M)</label>
+          <input type="number" id="w-d" placeholder="e.g. 2000" step="any">
+        </div>
+        <div class="input-group">
+          <label>PREFERRED STOCK ($M) [optional]</label>
+          <input type="number" id="w-ps" placeholder="0" step="any">
+        </div>
+        <div class="input-group">
+          <label>COST OF PREFERRED r_ps (%) [optional]</label>
+          <input type="number" id="w-rps" placeholder="0" step="any">
+        </div>
+        <button class="btn-calc" onclick="calcWACC()">COMPUTE WACC ›</button>
+      </div>
+      <div class="calc-output">
+        <div class="output-title">// WACC OUTPUT //</div>
+        <div class="output-value" id="wacc-result">—</div>
+        <div class="output-label" id="wacc-label">Enter capital structure data</div>
+        <div class="output-breakdown" id="wacc-breakdown"></div>
+      </div>
+    </div>
+
+    <!-- DCF -->
+    <div id="tab-dcf" class="calc-panel">
+      <div class="calc-inputs">
+        <div class="input-group">
+          <label>LAST YEAR'S FCF ($M)</label>
+          <input type="number" id="dcf-fcf0" placeholder="e.g. 500" step="any">
+        </div>
+        <div class="input-group">
+          <label>GROWTH RATE — OPTIMISTIC (%)</label>
+          <input type="number" id="dcf-go" placeholder="e.g. 10" step="any">
+        </div>
+        <div class="input-group">
+          <label>GROWTH RATE — BASE (%)</label>
+          <input type="number" id="dcf-gb" placeholder="e.g. 6" step="any">
+        </div>
+        <div class="input-group">
+          <label>GROWTH RATE — PESSIMISTIC (%)</label>
+          <input type="number" id="dcf-gp" placeholder="e.g. 2" step="any">
+        </div>
+        <div class="input-group">
+          <label>TERMINAL GROWTH RATE g_∞ (%)</label>
+          <input type="number" id="dcf-gt" placeholder="e.g. 3" step="any">
+        </div>
+        <div class="input-group">
+          <label>WACC (%)</label>
+          <input type="number" id="dcf-wacc" placeholder="e.g. 8.5" step="any">
+        </div>
+        <div class="input-group">
+          <label>FORECAST YEARS</label>
+          <input type="number" id="dcf-years" placeholder="5" step="1" min="1" max="10">
+        </div>
+        <div class="input-group">
+          <label>TOTAL DEBT ($M)</label>
+          <input type="number" id="dcf-debt" placeholder="e.g. 2000" step="any">
+        </div>
+        <div class="input-group">
+          <label>CASH &amp; EQUIVALENTS ($M)</label>
+          <input type="number" id="dcf-cash" placeholder="e.g. 800" step="any">
+        </div>
+        <div class="input-group">
+          <label>SHARES OUTSTANDING (M)</label>
+          <input type="number" id="dcf-shares" placeholder="e.g. 250" step="any">
+        </div>
+        <button class="btn-calc" onclick="calcDCF()">RUN DCF ›</button>
+      </div>
+      <div class="calc-output">
+        <div class="output-title">// DCF VALUATION OUTPUT //</div>
+        <div class="output-value" id="dcf-result">—</div>
+        <div class="output-label" id="dcf-label">3-scenario intrinsic value per share</div>
+        <div class="output-breakdown" id="dcf-breakdown"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ══════════════════════════════════════
+     FORMULAS
+     ══════════════════════════════════════ -->
+<section id="formulas">
+  <div class="container">
+    <p class="section-label">// FORMULA DATABASE //</p>
+    <h2 class="section-title">FORMULA REFERENCE</h2>
+    <p class="section-sub">Every formula you need — know the intuition, not just the equation.</p>
+
+    <div class="formula-grid">
+
+      <div class="formula-block">
+        <div class="formula-topic">TIME VALUE OF MONEY</div>
+        <div class="formula-item">
+          <span class="formula-name">Future Value</span>
+          <span class="formula-eq">FV = PV × (1 + r)^t</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Present Value</span>
+          <span class="formula-eq">PV = FV / (1 + r)^t</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Annuity PV</span>
+          <span class="formula-eq">PV = PMT × [1 − (1+r)^−n] / r</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Perpetuity PV</span>
+          <span class="formula-eq">PV = C / r</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Effective Annual Rate</span>
+          <span class="formula-eq">EAR = (1 + APR/m)^m − 1</span>
+          <span class="formula-note">m = compounding periods per year</span>
+        </div>
+      </div>
+
+      <div class="formula-block">
+        <div class="formula-topic">RISK &amp; RETURN / CAPM</div>
+        <div class="formula-item">
+          <span class="formula-name">CAPM / Security Market Line</span>
+          <span class="formula-eq">r_i = r_f + β_i × (r_M − r_f)</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Beta (regression slope)</span>
+          <span class="formula-eq">β = Cov(R_i, R_M) / Var(R_M)</span>
+          <span class="formula-note">Excel: =SLOPE(stock_rets, market_rets)</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Portfolio Expected Return</span>
+          <span class="formula-eq">E[R_p] = Σ w_i × E[R_i]</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Sharpe Ratio</span>
+          <span class="formula-eq">SR = (E[R_p] − r_f) / σ_p</span>
+        </div>
+      </div>
+
+      <div class="formula-block">
+        <div class="formula-topic">BOND &amp; STOCK VALUATION</div>
+        <div class="formula-item">
+          <span class="formula-name">Bond Price (semi-annual)</span>
+          <span class="formula-eq">P = Σ C/(1+r/2)^t + Par/(1+r/2)^2n</span>
+          <span class="formula-note">r = YTM; n = years; C = semi-annual coupon</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Gordon Growth Model</span>
+          <span class="formula-eq">P₀ = D₁ / (r_e − g)</span>
+          <span class="formula-note">D₁ = D₀(1+g); requires g &lt; r_e</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Cost of Equity (Gordon solved)</span>
+          <span class="formula-eq">r_e = D₁/P₀ + g</span>
+        </div>
+      </div>
+
+      <div class="formula-block">
+        <div class="formula-topic">CAPITAL BUDGETING</div>
+        <div class="formula-item">
+          <span class="formula-name">Net Present Value</span>
+          <span class="formula-eq">NPV = Σ FCF_t/(1+r)^t − C₀</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">IRR (solve for r)</span>
+          <span class="formula-eq">0 = Σ FCF_t/(1+IRR)^t − C₀</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Profitability Index</span>
+          <span class="formula-eq">PI = PV(FCFs) / |C₀|</span>
+          <span class="formula-note">Accept if PI &gt; 1; rank for capital rationing</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">EAA (unequal lives)</span>
+          <span class="formula-eq">EAA = NPV × r / [1 − (1+r)^−n]</span>
+        </div>
+      </div>
+
+      <div class="formula-block">
+        <div class="formula-topic">WACC &amp; VALUATION</div>
+        <div class="formula-item">
+          <span class="formula-name">WACC (3 components)</span>
+          <span class="formula-eq">WACC = w_d r_d(1−T) + w_ps r_ps + w_e r_e</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Terminal Value (Gordon)</span>
+          <span class="formula-eq">TV_n = FCF_{n+1} / (WACC − g)</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Enterprise Value</span>
+          <span class="formula-eq">EV = Σ PV(FCF_t) + PV(TV)</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Equity Value per Share</span>
+          <span class="formula-eq">P = (EV − Debt + Cash) / Shares</span>
+        </div>
+      </div>
+
+      <div class="formula-block">
+        <div class="formula-topic">CAPITAL STRUCTURE (M&amp;M)</div>
+        <div class="formula-item">
+          <span class="formula-name">M&amp;M I (no taxes)</span>
+          <span class="formula-eq">V_L = V_U  [irrelevance]</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">M&amp;M I (with taxes)</span>
+          <span class="formula-eq">V_L = V_U + T × D</span>
+          <span class="formula-note">T×D = PV of interest tax shield</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">M&amp;M II — levered cost of equity</span>
+          <span class="formula-eq">r_e = r_0 + (r_0 − r_d)(D/E)(1−T)</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Hamada — re-levering beta</span>
+          <span class="formula-eq">β_L = β_U [1 + (1−T)(D/E)]</span>
+        </div>
+      </div>
+
+      <div class="formula-block">
+        <div class="formula-topic">DIVIDENDS &amp; WORKING CAPITAL</div>
+        <div class="formula-item">
+          <span class="formula-name">Cash Conversion Cycle</span>
+          <span class="formula-eq">CCC = DSO + DSI − DPO</span>
+          <span class="formula-note">DSO=AR/Sales×365; DSI=Inv/COGS×365; DPO=AP/COGS×365</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Cost of Trade Credit</span>
+          <span class="formula-eq">r = Disc%/(1−Disc%) × 365/(Pay−Disc days)</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">DOL (degree of operating leverage)</span>
+          <span class="formula-eq">DOL = (S − VC) / EBIT</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">DFL (degree of financial leverage)</span>
+          <span class="formula-eq">DFL = EBIT / (EBIT − Interest)</span>
+        </div>
+      </div>
+
+      <div class="formula-block">
+        <div class="formula-topic">INTERNATIONAL FINANCE</div>
+        <div class="formula-item">
+          <span class="formula-name">Covered Interest Rate Parity</span>
+          <span class="formula-eq">F = S × (1 + r_d) / (1 + r_f)</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Purchasing Power Parity</span>
+          <span class="formula-eq">E[S_t] = S₀ × [(1+π_d)/(1+π_f)]^t</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">International NPV</span>
+          <span class="formula-eq">NPV = Σ [FCF_t(FC) × F_t] / (1+r_d)^t</span>
+          <span class="formula-note">Convert FC cash flows at forward rates, discount at domestic WACC</span>
+        </div>
+      </div>
+
+      <div class="formula-block">
+        <div class="formula-topic">OPTIONS</div>
+        <div class="formula-item">
+          <span class="formula-name">Call payoff at expiry</span>
+          <span class="formula-eq">C_T = max(S_T − K, 0)</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Put payoff at expiry</span>
+          <span class="formula-eq">P_T = max(K − S_T, 0)</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Put-Call Parity (European)</span>
+          <span class="formula-eq">C − P = S₀ − K·e^{−rT}</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Binomial risk-neutral probability</span>
+          <span class="formula-eq">p = (e^{rΔt} − d) / (u − d)</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-name">Binomial option price</span>
+          <span class="formula-eq">C = e^{−rΔt} × [p·C_u + (1−p)·C_d]</span>
+        </div>
+      </div>
+
+    </div><!-- /.formula-grid -->
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ══════════════════════════════════════
+     GROUP PROJECT
+     ══════════════════════════════════════ -->
+<section id="project">
+  <div class="container">
+    <p class="section-label">// STRIKE MISSION //</p>
+    <h2 class="section-title">GROUP PROJECT</h2>
+    <p class="section-sub">Full DCF firm valuation — WACC + 3-scenario FCF model. Special session: Saturday July 25, West LA Campus.</p>
+
+    <div class="project-grid">
+      <div class="project-block">
+        <h3>FCF EXTRACTION SEQUENCE</h3>
+        <ol class="step-list">
+          <li>
+            Calculate NOPAT from 10-K income statement
+            <span class="step-formula">NOPAT = EBIT × (1 − T)</span>
+          </li>
+          <li>
+            Compute net operating working capital
+            <span class="step-formula">NOWC = (Cash + AR + Inv) − (AP + Accruals)</span>
+          </li>
+          <li>
+            Total net operating capital
+            <span class="step-formula">TNOC = Net PPE + NOWC</span>
+          </li>
+          <li>
+            Net investment in operating capital
+            <span class="step-formula">ΔTNOC = TNOC_t − TNOC_{t−1}</span>
+          </li>
+          <li>
+            Free Cash Flow
+            <span class="step-formula">FCF = NOPAT − ΔTNOC</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="project-block">
+        <h3>DCF VALUATION SEQUENCE</h3>
+        <ol class="step-list">
+          <li>
+            Forecast FCF for 5 years under 3 growth scenarios
+            <span class="step-formula">FCF_t = FCF_0 × (1 + g)^t</span>
+          </li>
+          <li>
+            Terminal value in year n
+            <span class="step-formula">TV = FCF_{n+1} / (WACC − g_∞)</span>
+          </li>
+          <li>
+            Enterprise value
+            <span class="step-formula">EV = Σ[FCF_t/(1+WACC)^t] + TV/(1+WACC)^n</span>
+          </li>
+          <li>
+            Equity value
+            <span class="step-formula">Equity = EV − Total Debt + Cash</span>
+          </li>
+          <li>
+            Intrinsic price per share
+            <span class="step-formula">P* = Equity Value / Shares Outstanding</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="project-block">
+        <h3>WACC BUILD SEQUENCE</h3>
+        <ol class="step-list">
+          <li>
+            Estimate beta from market data
+            <span class="step-formula">β: 5-yr monthly returns vs. S&P 500 (SLOPE in Excel)</span>
+          </li>
+          <li>
+            Cost of equity via CAPM
+            <span class="step-formula">r_e = r_f + β × (r_M − r_f)</span>
+          </li>
+          <li>
+            Cost of debt = YTM on bonds (after-tax)
+            <span class="step-formula">r_d(1−T) = YTM × (1 − tax rate)</span>
+          </li>
+          <li>
+            Capital structure weights (market values)
+            <span class="step-formula">w_e = E/(D+E+PS);  w_d = D/(D+E+PS)</span>
+          </li>
+          <li>
+            Final WACC
+            <span class="step-formula">WACC = w_d r_d(1−T) + w_ps r_ps + w_e r_e</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="project-block">
+        <h3>TIMELINE</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-date">JUL 01</span>
+            <div class="timeline-dot"></div>
+            <span class="timeline-task">Pick company; download 10-K from SEC EDGAR</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">JUL 07</span>
+            <div class="timeline-dot"></div>
+            <span class="timeline-task">Build FCF worksheet; calculate beta from Yahoo Finance or Bloomberg</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">JUL 14</span>
+            <div class="timeline-dot"></div>
+            <span class="timeline-task">Complete WACC; build 3-scenario DCF in Excel</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">JUL 21</span>
+            <div class="timeline-dot"></div>
+            <span class="timeline-task">Draft full report; check formatting (TNR 12pt, 1.5 spacing)</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">JUL 25</span>
+            <div class="timeline-dot"></div>
+            <span class="timeline-task" style="color:var(--magenta)">SATURDAY SESSION — West LA Campus 9am–4pm (REQUIRED)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ══════════════════════════════════════
+     RESOURCES
+     ══════════════════════════════════════ -->
+<section id="resources">
+  <div class="container">
+    <p class="section-label">// INTELLIGENCE NETWORK //</p>
+    <h2 class="section-title">RESOURCES</h2>
+    <p class="section-sub">The best free corporate finance materials on the net — all battle-tested.</p>
+
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="resource-tag">FREE // BEST IN CLASS</div>
+        <div class="resource-name">Damodaran — NYU Stern</div>
+        <div class="resource-desc">The world authority on valuation. Full course notes, webcasts (26 sessions), data tables for beta/ERP by industry. Maps perfectly to every FINC 603 topic.</div>
+        <a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/corpfin.html" target="_blank" class="resource-link">OPEN RESOURCE ›</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-tag">FREE // MIT</div>
+        <div class="resource-name">MIT OCW 15.401 — Andrew Lo</div>
+        <div class="resource-desc">Full Finance Theory I with video lectures. Covers TVM, CAPM, capital budgeting, and options from first principles. Rigorous and clear.</div>
+        <a href="https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/" target="_blank" class="resource-link">OPEN RESOURCE ›</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-tag">FREE // WHARTON</div>
+        <div class="resource-name">Wharton Corporate Finance — Coursera</div>
+        <div class="resource-desc">Free to audit. Covers TVM, risk/return, and capital structure directly. Wharton School pedigree, MBA-targeted delivery.</div>
+        <a href="https://www.coursera.org/learn/wharton-finance" target="_blank" class="resource-link">OPEN RESOURCE ›</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-tag">DATA</div>
+        <div class="resource-name">SEC EDGAR</div>
+        <div class="resource-desc">All 10-K annual reports for publicly traded companies. Required for group project FCF extraction and company overview section.</div>
+        <a href="https://www.sec.gov/cgi-bin/browse-edgar" target="_blank" class="resource-link">OPEN DATABASE ›</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-tag">DATA</div>
+        <div class="resource-name">Damodaran Data — Beta &amp; ERP</div>
+        <div class="resource-desc">Current implied equity risk premium, industry beta tables, and historical market returns — essential inputs for your WACC calculation.</div>
+        <a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html" target="_blank" class="resource-link">OPEN DATA ›</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-tag">FREE // YALE</div>
+        <div class="resource-name">Shiller — Financial Markets (Yale)</div>
+        <div class="resource-desc">Nobel laureate Robert Shiller's full 23-lecture course on financial markets and institutions. Excellent context for risk, derivatives, and market structure.</div>
+        <a href="https://oyc.yale.edu/economics/econ-252" target="_blank" class="resource-link">OPEN RESOURCE ›</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">CORPO FINANCE // NIGHT CITY CAPITAL MARKETS</div>
+  <div class="footer-text">
+    Built for FINC 603 — Managing Corporate Financial Resources · Pepperdine Graziadio Business School<br>
+    Instructor: Dr. Maretno Agus Harjoto · Summer 2026<br><br>
+    Visual design inspired by the aesthetic of <em>Cyberpunk 2077</em> (CD Projekt Red). All game intellectual property belongs to CD Projekt Red. This is an independent educational resource.
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+     ══════════════════════════════════════ -->
+<script>
+/* ── TAB SWITCHER ── */
+function switchTab(id, btn) {
+  document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.calc-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── TVM CALCULATOR ── */
+function calcTVM() {
+  const solve = document.getElementById('tvm-solve').value;
+  const m = parseFloat(document.getElementById('tvm-m').value) || 1;
+  let pv   = parseFloat(document.getElementById('tvm-pv').value);
+  let fv   = parseFloat(document.getElementById('tvm-fv').value);
+  let pmt  = parseFloat(document.getElementById('tvm-pmt').value) || 0;
+  let rate = parseFloat(document.getElementById('tvm-rate').value) / 100;
+  let n    = parseFloat(document.getElementById('tvm-n').value);
+
+  let result, label, breakdown;
+  const r = rate / m;    // periodic rate
+  const N = (n || 0) * m; // total periods
+
+  try {
+    if (solve === 'fv') {
+      if (isNaN(pv)) pv = 0;
+      result = pv * Math.pow(1 + r, N) + pmt * (Math.pow(1 + r, N) - 1) / r;
+      label = 'Future Value';
+      breakdown = `PV: $${fmt(pv)}\nPMT: $${fmt(pmt)}/period\nRate: ${(rate*100).toFixed(4)}% annual  |  ${(r*100).toFixed(4)}% periodic\nPeriods: ${N} (${n} yrs × ${m}/yr)\n\nFV = PV(1+r)^N + PMT×[(1+r)^N−1]/r\n   = $${fmt(pv)}(${(1+r).toFixed(6)})^${N} + $${fmt(pmt)}×[...]\n   = ${fmt2(result)}`;
+    } else if (solve === 'pv') {
+      if (isNaN(fv)) fv = 0;
+      result = (fv / Math.pow(1 + r, N)) + (r === 0 ? pmt * N : pmt * (1 - Math.pow(1 + r, -N)) / r);
+      label = 'Present Value';
+      breakdown = `FV: $${fmt(fv)}\nPMT: $${fmt(pmt)}/period\nRate: ${(rate*100).toFixed(4)}% annual\nPeriods: ${N}\n\nPV = FV/(1+r)^N + PMT×[1−(1+r)^−N]/r\n   = ${fmt2(result)}`;
+    } else if (solve === 'pmt') {
+      result = (pv * Math.pow(1+r, N) - fv) * r / (Math.pow(1+r, N) - 1);
+      result = -result;
+      label = 'Payment per period';
+      breakdown = `PV: $${fmt(pv)}  FV: $${fmt(fv)}\nRate: ${(r*100).toFixed(4)}%/period  N: ${N} periods\nPMT = [FV − PV(1+r)^N] × r / [(1+r)^N−1]\n   = ${fmt2(result)}/period`;
+    } else if (solve === 'rate') {
+      // Newton-Raphson
+      if (isNaN(pmt) || pmt === 0) {
+        result = Math.pow(fv / pv, 1/N) - 1;
+        rate = result * m;
+      } else {
+        let x = 0.05 / m;
+        for (let i = 0; i < 100; i++) {
+          const f = pv * Math.pow(1+x, N) + pmt * (Math.pow(1+x,N)-1)/x - fv;
+          const df = N * pv * Math.pow(1+x, N-1) + pmt * (N*Math.pow(1+x,N-1)*x - Math.pow(1+x,N) + 1)/(x*x);
+          const dx = f/df;
+          x -= dx;
+          if (Math.abs(dx) < 1e-10) break;
+        }
+        result = x;
+        rate = x * m;
+      }
+      label = 'Interest Rate (periodic)';
+      breakdown = `Annual rate: ${(rate*100).toFixed(4)}%\nPeriodic rate: ${(result*100).toFixed(4)}%\nEAR: ${((Math.pow(1+result,m)-1)*100).toFixed(4)}%`;
+      result = rate * 100;
+    } else if (solve === 'nper') {
+      result = Math.log(fv / pv) / Math.log(1 + r);
+      label = 'Number of periods (total)';
+      breakdown = `Total periods: ${result.toFixed(2)}\nYears: ${(result/m).toFixed(2)}\n\nN = ln(FV/PV) / ln(1+r)`;
+    }
+
+    document.getElementById('tvm-result').textContent = solve === 'rate'
+      ? result.toFixed(4) + '%'
+      : '$' + fmt2(Math.abs(result));
+    document.getElementById('tvm-label').textContent = label;
+    document.getElementById('tvm-breakdown').textContent = breakdown;
+  } catch(e) {
+    document.getElementById('tvm-result').textContent = 'ERR';
+    document.getElementById('tvm-label').textContent = 'Check inputs — missing value?';
+    document.getElementById('tvm-breakdown').textContent = '';
+  }
+}
+
+/* ── WACC CALCULATOR ── */
+function calcWACC() {
+  const rf   = parseFloat(document.getElementById('w-rf').value) / 100;
+  const beta = parseFloat(document.getElementById('w-beta').value);
+  const mrp  = parseFloat(document.getElementById('w-mrp').value) / 100;
+  const rd   = parseFloat(document.getElementById('w-rd').value) / 100;
+  const tax  = parseFloat(document.getElementById('w-tax').value) / 100;
+  const E    = parseFloat(document.getElementById('w-e').value) || 0;
+  const D    = parseFloat(document.getElementById('w-d').value) || 0;
+  const PS   = parseFloat(document.getElementById('w-ps').value) || 0;
+  const rps  = parseFloat(document.getElementById('w-rps').value) / 100 || 0;
+
+  if ([rf, beta, mrp, rd, tax].some(isNaN)) {
+    document.getElementById('wacc-result').textContent = 'ERR';
+    document.getElementById('wacc-label').textContent = 'Fill all required fields';
+    return;
+  }
+
+  const re = rf + beta * mrp;
+  const V = E + D + PS;
+  const we = E / V, wd = D / V, wps = PS / V;
+  const wacc = wd * rd * (1 - tax) + wps * rps + we * re;
+
+  document.getElementById('wacc-result').textContent = (wacc * 100).toFixed(2) + '%';
+  document.getElementById('wacc-label').textContent = 'Weighted-Average Cost of Capital';
+  document.getElementById('wacc-breakdown').textContent =
+`CAPM cost of equity:
+  r_e = ${(rf*100).toFixed(2)}% + ${beta} × ${(mrp*100).toFixed(2)}% = ${(re*100).toFixed(2)}%
+
+Capital structure (market values):
+  Equity:    $${fmt(E)}M  →  w_e = ${(we*100).toFixed(1)}%
+  Debt:      $${fmt(D)}M  →  w_d = ${(wd*100).toFixed(1)}%
+  Preferred: $${fmt(PS)}M →  w_ps = ${(wps*100).toFixed(1)}%
+
+After-tax cost of debt:
+  r_d(1−T) = ${(rd*100).toFixed(2)}% × (1 − ${(tax*100).toFixed(0)}%) = ${(rd*(1-tax)*100).toFixed(2)}%
+
+WACC = ${(wd*100).toFixed(1)}%×${(rd*(1-tax)*100).toFixed(2)}% + ${(wps*100).toFixed(1)}%×${(rps*100).toFixed(2)}% + ${(we*100).toFixed(1)}%×${(re*100).toFixed(2)}%
+     = ${(wacc*100).toFixed(2)}%
+
+Interpretation: Accept any average-risk project with
+expected return > ${(wacc*100).toFixed(2)}%.`;
+}
+
+/* ── DCF CALCULATOR ── */
+function calcDCF() {
+  const fcf0   = parseFloat(document.getElementById('dcf-fcf0').value);
+  const go     = parseFloat(document.getElementById('dcf-go').value) / 100;
+  const gb     = parseFloat(document.getElementById('dcf-gb').value) / 100;
+  const gp     = parseFloat(document.getElementById('dcf-gp').value) / 100;
+  const gt     = parseFloat(document.getElementById('dcf-gt').value) / 100;
+  const wacc   = parseFloat(document.getElementById('dcf-wacc').value) / 100;
+  const years  = parseInt(document.getElementById('dcf-years').value) || 5;
+  const debt   = parseFloat(document.getElementById('dcf-debt').value) || 0;
+  const cash   = parseFloat(document.getElementById('dcf-cash').value) || 0;
+  const shares = parseFloat(document.getElementById('dcf-shares').value) || 1;
+
+  if ([fcf0, go, gb, gp, gt, wacc].some(isNaN)) {
+    document.getElementById('dcf-result').textContent = 'ERR';
+    document.getElementById('dcf-label').textContent = 'Fill all required fields';
+    return;
+  }
+
+  function scenario(g, label) {
+    let pvFCF = 0, lines = `\n── ${label} (g=${(g*100).toFixed(1)}%) ──\n`;
+    let fcf = fcf0;
+    for (let t = 1; t <= years; t++) {
+      fcf *= (1 + g);
+      const pv = fcf / Math.pow(1 + wacc, t);
+      pvFCF += pv;
+      lines += `  Yr${t}: FCF=$${fmt(fcf)}M  PV=$${fmt(pv)}M\n`;
+    }
+    const fcfN1 = fcf * (1 + gt);
+    const TV = fcfN1 / (wacc - gt);
+    const pvTV = TV / Math.pow(1 + wacc, years);
+    const EV = pvFCF + pvTV;
+    const equity = EV - debt + cash;
+    const price = equity / shares;
+    lines += `  Terminal value: $${fmt(TV)}M  →  PV(TV)=$${fmt(pvTV)}M\n`;
+    lines += `  Enterprise Value: $${fmt(EV)}M\n`;
+    lines += `  Equity = EV − Debt + Cash = $${fmt(equity)}M\n`;
+    lines += `  ► Intrinsic Price: $${price.toFixed(2)} / share\n`;
+    return { price, lines };
+  }
+
+  const opt  = scenario(go, 'OPTIMISTIC');
+  const base = scenario(gb, 'BASE');
+  const pess = scenario(gp, 'PESSIMISTIC');
+
+  document.getElementById('dcf-result').textContent = `$${base.price.toFixed(2)}`;
+  document.getElementById('dcf-label').textContent = 'Base case intrinsic value per share';
+  document.getElementById('dcf-breakdown').textContent =
+    `WACC: ${(wacc*100).toFixed(2)}%  |  Terminal g: ${(gt*100).toFixed(1)}%  |  Years: ${years}\n` +
+    `Debt: $${fmt(debt)}M  Cash: $${fmt(cash)}M  Shares: ${fmt(shares)}M\n` +
+    opt.lines + base.lines + pess.lines +
+    `\nSUMMARY\n  Optimistic:  $${opt.price.toFixed(2)}/share\n  Base:        $${base.price.toFixed(2)}/share\n  Pessimistic: $${pess.price.toFixed(2)}/share`;
+}
+
+/* ── HELPERS ── */
+function fmt(n) { return isNaN(n) ? '—' : n.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}); }
+function fmt2(n) { return isNaN(n) ? '—' : Math.abs(n).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+</script>
+
+</body>
+</html>
