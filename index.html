@@ -253,46 +253,47 @@ section { padding:5rem 2rem; }
   clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
 }
 .dash-card h3 {
-  font-family:var(--fm); font-size:0.65rem; letter-spacing:0.2em;
-  color:var(--cyan); text-shadow:var(--cg); margin-bottom:1rem;
+  font-family:var(--fm); font-size:0.72rem; letter-spacing:0.15em;
+  color:var(--cyan); text-shadow:var(--cg); margin-bottom:1.1rem;
 }
 .grade-row {
   display:flex; justify-content:space-between; align-items:center;
-  padding:0.4rem 0; border-bottom:1px solid rgba(252,238,9,0.06);
-  font-size:0.9rem;
+  padding:0.55rem 0.5rem; border-bottom:1px solid rgba(252,238,9,0.07);
+  font-size:0.97rem;
 }
+.grade-row:nth-child(odd) { background:rgba(252,238,9,0.03); }
 .grade-row:last-child { border-bottom:none; }
 .grade-pct {
-  font-family:var(--fh); font-size:1rem; color:var(--yellow);
+  font-family:var(--fh); font-size:1.05rem; color:var(--yellow);
   text-shadow:var(--yg);
 }
 
 .date-item {
-  display:flex; gap:1rem; align-items:flex-start; padding:0.5rem 0;
-  border-bottom:1px solid rgba(252,238,9,0.05);
+  display:flex; gap:1.1rem; align-items:flex-start; padding:0.65rem 0;
+  border-bottom:1px solid rgba(252,238,9,0.06);
 }
 .date-item:last-child { border-bottom:none; }
 .date-tag {
-  font-family:var(--fm); font-size:0.65rem; color:var(--cyan);
-  min-width:64px; padding-top:0.1rem;
+  font-family:var(--fm); font-size:0.75rem; color:var(--cyan);
+  min-width:68px; padding-top:0.15rem; letter-spacing:0.08em;
 }
-.date-desc { font-size:0.88rem; }
+.date-desc { font-size:0.95rem; line-height:1.5; }
 .date-desc.red { color:var(--mag); }
 .date-desc.yellow { color:var(--yellow); }
 
 .quiz-grid {
-  display:grid; grid-template-columns: repeat(5,1fr); gap:0.5rem;
+  display:grid; grid-template-columns: repeat(4,1fr); gap:0.5rem;
 }
 .quiz-chip {
   background:var(--yd); border:1px solid var(--border);
-  padding:0.5rem 0.25rem; text-align:center;
+  padding:0.6rem 0.25rem; text-align:center;
 }
 .quiz-num {
-  font-family:var(--fh); font-size:0.7rem; color:var(--yellow);
-  display:block; margin-bottom:0.2rem;
+  font-family:var(--fh); font-size:0.82rem; color:var(--yellow);
+  display:block; margin-bottom:0.25rem;
 }
 .quiz-wk {
-  font-family:var(--fm); font-size:0.6rem; color:var(--muted); display:block;
+  font-family:var(--fm); font-size:0.68rem; color:var(--muted); display:block;
 }
 
 .warning-box {
@@ -561,11 +562,11 @@ footer { background:var(--dark); border-top:1px solid var(--border); padding:2re
       <!-- Grade weights -->
       <div class="dash-card">
         <h3>GRADE BREAKDOWN</h3>
-        <div class="grade-row"><span>Quizzes (5 × 5%)</span><span class="grade-pct">25%</span></div>
+        <div class="grade-row"><span>Quizzes (8 total)</span><span class="grade-pct">25%</span></div>
         <div class="grade-row"><span>Midterm Exam</span><span class="grade-pct">25%</span></div>
         <div class="grade-row"><span>Final Exam</span><span class="grade-pct">25%</span></div>
         <div class="grade-row"><span>Group Project (DCF)</span><span class="grade-pct">20%</span></div>
-        <div class="grade-row"><span>Participation</span><span class="grade-pct">5%</span></div>
+        <div class="grade-row"><span>Online Class Participation</span><span class="grade-pct">5%</span></div>
       </div>
 
       <!-- Key dates -->
@@ -573,7 +574,7 @@ footer { background:var(--dark); border-top:1px solid var(--border); padding:2re
         <h3>KEY DATES</h3>
         <div class="date-item">
           <span class="date-tag">JUN 23</span>
-          <span class="date-desc yellow">MIDTERM DUE — Weeks 1–7</span>
+          <span class="date-desc yellow">MIDTERM DUE — Take-home · Covers Wks 1–7<br><small style="opacity:0.7">No class this week — submit on Canvas</small></span>
         </div>
         <div class="date-item">
           <span class="date-tag">JUL 25</span>
@@ -581,7 +582,7 @@ footer { background:var(--dark); border-top:1px solid var(--border); padding:2re
         </div>
         <div class="date-item">
           <span class="date-tag">AUG 04</span>
-          <span class="date-desc yellow">FINAL EXAM DUE — Weeks 9–13 + cumulative</span>
+          <span class="date-desc yellow">FINAL EXAM DUE — Take-home · Wks 9–13 + cumulative<br><small style="opacity:0.7">No class this week — submit on Canvas</small></span>
         </div>
       </div>
 
@@ -590,12 +591,15 @@ footer { background:var(--dark); border-top:1px solid var(--border); padding:2re
         <h3>QUIZ SCHEDULE</h3>
         <div class="quiz-grid">
           <div class="quiz-chip"><span class="quiz-num">Q1</span><span class="quiz-wk">WK 3</span></div>
-          <div class="quiz-chip"><span class="quiz-num">Q2</span><span class="quiz-wk">WK 5</span></div>
-          <div class="quiz-chip"><span class="quiz-num">Q3</span><span class="quiz-wk">WK 7</span></div>
-          <div class="quiz-chip"><span class="quiz-num">Q4</span><span class="quiz-wk">WK 9</span></div>
-          <div class="quiz-chip"><span class="quiz-num">Q5</span><span class="quiz-wk">WK 11</span></div>
+          <div class="quiz-chip"><span class="quiz-num">Q2</span><span class="quiz-wk">WK 4</span></div>
+          <div class="quiz-chip"><span class="quiz-num">Q3</span><span class="quiz-wk">WK 5</span></div>
+          <div class="quiz-chip"><span class="quiz-num">Q4</span><span class="quiz-wk">WK 6</span></div>
+          <div class="quiz-chip"><span class="quiz-num">Q5</span><span class="quiz-wk">WK 9</span></div>
+          <div class="quiz-chip"><span class="quiz-num">Q6</span><span class="quiz-wk">WK 10</span></div>
+          <div class="quiz-chip"><span class="quiz-num">Q7</span><span class="quiz-wk">WK 11</span></div>
+          <div class="quiz-chip"><span class="quiz-num">Q8</span><span class="quiz-wk">WK 12</span></div>
         </div>
-        <p style="font-size:0.82rem;color:var(--muted);margin-top:0.9rem;font-family:var(--fm);">Each quiz = 5% of final grade. Cannot be dropped.</p>
+        <p style="font-size:0.82rem;color:var(--muted);margin-top:0.9rem;font-family:var(--fm);">8 quizzes · 25% combined · No quiz weeks 7, 8, 13, 14</p>
       </div>
 
     </div>
