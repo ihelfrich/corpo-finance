@@ -385,7 +385,7 @@ section { padding:5rem 2rem; }
 ══════════════════════════════════════ */
 #calc { background:var(--dark); }
 
-.calc-tabs { display:flex; border-bottom:1px solid var(--border); margin-bottom:2rem; }
+.calc-tabs { display:flex; border-bottom:1px solid var(--border); margin-bottom:2rem; overflow-x:auto; flex-wrap:wrap; gap:0; }
 .calc-tab {
   font-family:var(--fm); font-size:0.67rem; letter-spacing:0.15em;
   padding:0.75rem 1.5rem; cursor:pointer; color:var(--muted);
@@ -502,6 +502,247 @@ footer { background:var(--dark); border-top:1px solid var(--border); padding:2re
   .modules-grid,.formula-grid,.res-grid { grid-template-columns:1fr; }
   .dash-grid { grid-template-columns:1fr; }
 }
+
+
+/* Radio button rows for options tool */
+.opt-radio-row {
+  display: flex; gap: 1.2rem; flex-wrap: wrap;
+  padding: 0.7rem 0.9rem;
+  background: var(--card); border: 1px solid var(--border);
+  margin-bottom: 0.2rem;
+}
+.opt-radio-group { display: flex; align-items: center; gap: 0.7rem; }
+.opt-radio-label {
+  font-family: var(--fm); font-size: 0.63rem; letter-spacing: 0.2em;
+  color: var(--muted);
+}
+.opt-radio-item {
+  font-family: var(--fm); font-size: 0.75rem; letter-spacing: 0.1em;
+  color: var(--cyan); cursor: pointer; display: flex; align-items: center; gap: 0.35rem;
+}
+.opt-radio-item input[type="radio"] { accent-color: var(--cyan); }
+
+/* Range input styling */
+input[type="range"]::-webkit-slider-runnable-track {
+  background: var(--border); height: 4px; border-radius: 2px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  width: 16px; height: 16px; margin-top: -6px; border-radius: 50%;
+  -webkit-appearance: none; appearance: none;
+}
+
+
+/* ── DuPont waterfall bars ── */
+.dp-waterfall {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1.2rem 0;
+}
+.dp-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.dp-bar-label {
+  font-family: var(--fm);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  width: 5.5rem;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.dp-bar-track {
+  flex: 1;
+  height: 1.45rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.dp-bar-fill {
+  height: 100%;
+  transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  align-items: center;
+  padding-left: 0.4rem;
+  font-family: var(--fm);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #000;
+  min-width: 2rem;
+  white-space: nowrap;
+}
+.dp-bar-fill.cyan  { background: var(--cyan);   box-shadow: var(--cg); }
+.dp-bar-fill.yell  { background: var(--yellow);  box-shadow: var(--yg); }
+.dp-bar-fill.mag   { background: var(--mag);     box-shadow: var(--mg); }
+
+.dp-insight {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  line-height: 1.7;
+  color: var(--text);
+  border-left: 3px solid var(--yellow);
+  padding: 0.6rem 0.9rem;
+  background: var(--yd);
+  margin-top: 0.5rem;
+}
+.dp-insight strong { color: var(--yellow); }
+
+/* ── DuPont component rows ── */
+.dp-components {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 1rem 0;
+}
+.dp-comp-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+}
+.dp-comp-tag {
+  font-family: var(--fm);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  flex-shrink: 0;
+  width: 4.5rem;
+}
+.dp-comp-tag.cyan { color: var(--cyan); }
+.dp-comp-tag.yell { color: var(--yellow); }
+.dp-comp-tag.mag  { color: var(--mag); }
+.dp-comp-val {
+  font-family: var(--fh);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.dp-comp-val.cyan { color: var(--cyan); text-shadow: var(--cg); }
+.dp-comp-val.yell { color: var(--yellow); text-shadow: var(--yg); }
+.dp-comp-val.mag  { color: var(--mag); text-shadow: var(--mg); }
+.dp-comp-desc {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ── FCF step builder ── */
+.fcf-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.fcf-step {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  padding: 1rem 1.1rem;
+  clip-path: polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+}
+.fcf-step-head {
+  font-family: var(--fm);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+  margin-bottom: 0.65rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fcf-step-num {
+  display: inline-block;
+  background: var(--cyan);
+  color: #000;
+  font-family: var(--fh);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  margin-right: 0.5rem;
+}
+.fcf-step-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem 1rem;
+}
+.fcf-step-inputs .input-group { margin: 0; }
+.fcf-step-sub {
+  margin-top: 0.6rem;
+  font-family: var(--fm);
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.fcf-sub-val {
+  color: var(--yellow);
+  font-weight: 700;
+}
+
+.fcf-waterfall {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0.8rem 0;
+  border: 1px solid var(--border);
+}
+.fcf-wf-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid rgba(252,238,9,0.07);
+  padding: 0.45rem 0.8rem;
+  font-family: var(--fm);
+  font-size: 0.7rem;
+}
+.fcf-wf-row:last-child { border-bottom: none; }
+.fcf-wf-label {
+  flex: 1;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.fcf-wf-formula {
+  flex: 2;
+  color: var(--text);
+  font-size: 0.65rem;
+}
+.fcf-wf-val {
+  flex: 0 0 6rem;
+  text-align: right;
+  font-weight: 700;
+}
+.fcf-wf-val.pos { color: var(--cyan); }
+.fcf-wf-val.neg { color: var(--mag); }
+.fcf-wf-val.yell { color: var(--yellow); text-shadow: var(--yg); }
+.fcf-wf-row.fcf-total {
+  background: rgba(252,238,9,0.06);
+  border-top: 1px solid var(--border);
+}
+
+.fcf-insight {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  line-height: 1.75;
+  color: var(--text);
+  border-left: 3px solid var(--cyan);
+  padding: 0.65rem 0.9rem;
+  background: rgba(0,212,255,0.05);
+  margin-top: 0.6rem;
+}
+.fcf-insight strong { color: var(--cyan); }
+
+/* FCF panel override — single column */
+#tab-fcf.active {
+  grid-template-columns: 1fr !important;
+}
+.fcf-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+@media(max-width:760px){
+  .fcf-two-col { grid-template-columns: 1fr; }
+  .fcf-step-inputs { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 <body>
@@ -1096,6 +1337,12 @@ $$d_1 = \frac{\ln(S_0/K) + (r+\sigma^2/2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \
       <button class="calc-tab active" onclick="switchTab('tvm',this)">TVM</button>
       <button class="calc-tab" onclick="switchTab('wacc',this)">WACC</button>
       <button class="calc-tab" onclick="switchTab('dcf',this)">DCF VALUATION</button>
+      <button class="calc-tab" onclick="switchTab('bond',this)">BOND PRICER</button>
+      <button class="calc-tab" onclick="switchTab('hamada',this)">HAMADA β</button>
+      <button class="calc-tab" onclick="switchTab('options',this)">OPTIONS</button>
+      <button class="calc-tab" onclick="switchTab('mm',this)">M&amp;M LEVERAGE</button>
+      <button class="calc-tab" onclick="switchTab('dupont',this)">DUPONT ROE</button>
+      <button class="calc-tab" onclick="switchTab('fcf',this)">FCF BUILDER</button>
     </div>
 
     <!-- TVM -->
@@ -1179,6 +1426,652 @@ $$d_1 = \frac{\ln(S_0/K) + (r+\sigma^2/2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \
         <div class="out-desc"  id="dcf-desc">3-scenario intrinsic value per share</div>
         <div class="out-math"  id="dcf-math"></div>
       </div>
+
+
+<div id="tab-bond" class="calc-panel">
+
+  <div class="calc-inputs">
+
+    <div class="input-group">
+      <label>SOLVE FOR</label>
+      <select id="bond-solve">
+        <option value="price">Price from YTM</option>
+        <option value="ytm">YTM from Price</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>FACE VALUE / PAR ($)</label>
+      <input type="number" id="bond-face" placeholder="e.g. 1000" step="any" value="1000">
+    </div>
+
+    <div class="input-group">
+      <label>ANNUAL COUPON RATE (%)</label>
+      <input type="number" id="bond-coupon" placeholder="e.g. 6" step="any">
+    </div>
+
+    <div class="input-group">
+      <label>YEARS TO MATURITY</label>
+      <input type="number" id="bond-n" placeholder="e.g. 10" step="any" min="0.5">
+    </div>
+
+    <div class="input-group">
+      <label>YTM (%) — leave blank when solving for YTM</label>
+      <input type="number" id="bond-ytm" placeholder="e.g. 7" step="any">
+    </div>
+
+    <div class="input-group">
+      <label>MARKET PRICE ($) — leave blank when solving for Price</label>
+      <input type="number" id="bond-price-in" placeholder="e.g. 950" step="any">
+    </div>
+
+    <!-- Semi-annual toggle -->
+    <div class="input-group" style="flex-direction:row;align-items:center;gap:0.75rem;">
+      <input type="checkbox" id="bond-semi" style="width:auto;accent-color:var(--yellow);">
+      <label for="bond-semi" style="font-size:0.67rem;letter-spacing:0.12em;color:var(--cyan);cursor:pointer;">
+        SEMI-ANNUAL COUPONS
+      </label>
+    </div>
+
+    <!-- Callable toggle -->
+    <div class="input-group" style="flex-direction:row;align-items:center;gap:0.75rem;">
+      <input type="checkbox" id="bond-callable" style="width:auto;accent-color:var(--mag);"
+             onchange="document.getElementById('bond-call-fields').style.display=this.checked?'flex':'none'">
+      <label for="bond-callable" style="font-size:0.67rem;letter-spacing:0.12em;color:var(--cyan);cursor:pointer;">
+        CALLABLE BOND (compute YTC)
+      </label>
+    </div>
+
+    <div id="bond-call-fields" style="display:none;flex-direction:column;gap:0.9rem;">
+      <div class="input-group">
+        <label>CALL PRICE ($)</label>
+        <input type="number" id="bond-callprice" placeholder="e.g. 1050" step="any">
+      </div>
+      <div class="input-group">
+        <label>YEARS TO FIRST CALL</label>
+        <input type="number" id="bond-callyrs" placeholder="e.g. 5" step="any">
+      </div>
+    </div>
+
+    <button class="btn-calc" onclick="calcBond()">COMPUTE BOND ›</button>
+  </div><!-- /.calc-inputs -->
+
+  <div class="calc-output">
+    <div class="out-label">// BOND OUTPUT //</div>
+    <div class="out-value" id="bond-result">—</div>
+    <div class="out-desc"  id="bond-desc">Enter bond parameters and compute</div>
+
+    <!-- Secondary metrics row -->
+    <div id="bond-metrics" style="display:none;
+         display:none;
+         grid-template-columns:1fr 1fr;gap:0.6rem;margin:0.9rem 0;">
+      <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.18);padding:0.6rem 0.8rem;">
+        <div style="font-family:var(--fm);font-size:0.58rem;letter-spacing:0.18em;color:var(--cyan);margin-bottom:0.25rem;">
+          MACAULAY DURATION
+        </div>
+        <div style="font-family:'Orbitron',monospace;font-size:1.25rem;color:var(--yellow);text-shadow:var(--yg);"
+             id="bond-dur">—</div>
+        <div style="font-family:var(--fm);font-size:0.6rem;color:var(--muted);">years</div>
+      </div>
+      <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.18);padding:0.6rem 0.8rem;">
+        <div style="font-family:var(--fm);font-size:0.58rem;letter-spacing:0.18em;color:var(--cyan);margin-bottom:0.25rem;">
+          MODIFIED DURATION
+        </div>
+        <div style="font-family:'Orbitron',monospace;font-size:1.25rem;color:var(--yellow);text-shadow:var(--yg);"
+             id="bond-mdur">—</div>
+        <div style="font-family:var(--fm);font-size:0.6rem;color:var(--muted);">%ΔP per 1% ΔYTM</div>
+      </div>
+      <div id="bond-ytc-box" style="display:none;
+           background:rgba(255,42,109,0.06);border:1px solid rgba(255,42,109,0.3);
+           padding:0.6rem 0.8rem;grid-column:span 2;">
+        <div style="font-family:var(--fm);font-size:0.58rem;letter-spacing:0.18em;color:var(--mag);margin-bottom:0.25rem;">
+          YIELD TO CALL (YTC)
+        </div>
+        <div style="font-family:'Orbitron',monospace;font-size:1.25rem;color:var(--mag);text-shadow:var(--mg);"
+             id="bond-ytc-val">—</div>
+      </div>
+    </div>
+
+    <!-- Inverse relationship note -->
+    <div id="bond-intuition" style="display:none;
+         font-family:var(--fm);font-size:0.68rem;line-height:1.7;color:var(--muted);
+         border-left:2px solid var(--yellow);padding:0.5rem 0.75rem;margin-bottom:0.9rem;">
+      <span style="color:var(--cyan);">// INTUITION //</span><br>
+      Price and YTM move in <span style="color:var(--yellow);">opposite directions</span>.
+      When rates rise, existing coupons are worth less relative to new bonds — so the
+      price falls. Duration measures this sensitivity: a bond with higher duration drops
+      more in price for every 1 bp rise in yield.
+    </div>
+
+    <div class="out-math" id="bond-math"></div>
+  </div><!-- /.calc-output -->
+
+</div><!-- #tab-bond --><div id="tab-hamada" class="calc-panel">
+
+  <div class="calc-inputs">
+
+    <div style="font-family:var(--fm);font-size:0.62rem;letter-spacing:0.12em;
+         color:var(--muted);border-left:2px solid var(--cyan);padding:0.4rem 0.75rem;
+         line-height:1.7;margin-bottom:0.4rem;">
+      STEP 1 — enter the <span style="color:var(--text);">comparable company's</span>
+      observed (levered) beta and capital structure.<br>
+      STEP 2 — enter <span style="color:var(--text);">your target company's</span> D/E.
+    </div>
+
+    <!-- Comparable co. -->
+    <div class="input-group">
+      <label>COMPARABLE β_L  (observed levered beta)</label>
+      <input type="number" id="ham-bl" placeholder="e.g. 1.35" step="any">
+    </div>
+
+    <div class="input-group">
+      <label>COMPARABLE D/E RATIO</label>
+      <input type="number" id="ham-de-comp" placeholder="e.g. 0.60" step="any">
+    </div>
+
+    <div class="input-group">
+      <label>TAX RATE T (%)</label>
+      <input type="number" id="ham-tax" placeholder="e.g. 21" step="any">
+    </div>
+
+    <!-- Target co. -->
+    <div class="input-group">
+      <label>TARGET COMPANY D/E RATIO</label>
+      <input type="number" id="ham-de-tgt" placeholder="e.g. 0.40" step="any">
+    </div>
+
+    <!-- Optional CAPM inputs -->
+    <div style="font-family:var(--fm);font-size:0.6rem;letter-spacing:0.15em;
+         color:var(--muted);margin-top:0.3rem;">— OPTIONAL: CAPM INPUTS —</div>
+
+    <div class="input-group">
+      <label>RISK-FREE RATE r_f (%) [opt]</label>
+      <input type="number" id="ham-rf" placeholder="e.g. 4.5" step="any">
+    </div>
+
+    <div class="input-group">
+      <label>EQUITY RISK PREMIUM ERP (%) [opt]</label>
+      <input type="number" id="ham-erp" placeholder="e.g. 6.0" step="any">
+    </div>
+
+    <button class="btn-calc" onclick="calcHamada()">RUN HAMADA ›</button>
+  </div><!-- /.calc-inputs -->
+
+  <div class="calc-output">
+    <div class="out-label">// HAMADA OUTPUT //</div>
+    <div class="out-value" id="ham-result">—</div>
+    <div class="out-desc"  id="ham-desc">Unlevered (asset) beta appears here</div>
+
+    <!-- β_L target chip -->
+    <div id="ham-metrics" style="display:none;
+         display:none;
+         grid-template-columns:1fr 1fr;gap:0.6rem;margin:0.9rem 0;">
+      <div style="background:rgba(252,238,9,0.06);border:1px solid var(--border);
+           padding:0.6rem 0.8rem;">
+        <div style="font-family:var(--fm);font-size:0.58rem;letter-spacing:0.18em;
+             color:var(--cyan);margin-bottom:0.25rem;">β_U  (UNLEVERED)</div>
+        <div style="font-family:'Orbitron',monospace;font-size:1.25rem;
+             color:var(--yellow);text-shadow:var(--yg);" id="ham-bu-val">—</div>
+      </div>
+      <div style="background:rgba(252,238,9,0.06);border:1px solid var(--border);
+           padding:0.6rem 0.8rem;">
+        <div style="font-family:var(--fm);font-size:0.58rem;letter-spacing:0.18em;
+             color:var(--cyan);margin-bottom:0.25rem;">β_L,TARGET  (RE-LEVERED)</div>
+        <div style="font-family:'Orbitron',monospace;font-size:1.25rem;
+             color:var(--yellow);text-shadow:var(--yg);" id="ham-blt-val">—</div>
+      </div>
+      <div id="ham-capm-box" style="display:none;
+           background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.22);
+           padding:0.6rem 0.8rem;grid-column:span 2;">
+        <div style="font-family:var(--fm);font-size:0.58rem;letter-spacing:0.18em;
+             color:var(--cyan);margin-bottom:0.25rem;">IMPLIED r_e (CAPM)</div>
+        <div style="font-family:'Orbitron',monospace;font-size:1.35rem;
+             color:var(--cyan);text-shadow:var(--cg);" id="ham-re-val">—</div>
+      </div>
+    </div>
+
+    <!-- Why unlever note -->
+    <div id="ham-intuition" style="display:none;
+         font-family:var(--fm);font-size:0.68rem;line-height:1.7;color:var(--muted);
+         border-left:2px solid var(--cyan);padding:0.5rem 0.75rem;margin-bottom:0.9rem;">
+      <span style="color:var(--yellow);">// WHY UNLEVER FIRST? //</span><br>
+      A comparable firm's observed β_L reflects
+      <span style="color:var(--text);">both business risk and financial risk</span>
+      (leverage amplifies equity volatility).
+      Stripping out the debt shield via Hamada leaves β_U — pure
+      <span style="color:var(--yellow);">asset / operating risk</span>.
+      Re-levering at <em>your</em> target D/E then adds back the correct amount of
+      financial risk for your capital structure.
+    </div>
+
+    <div class="out-math" id="ham-math"></div>
+  </div><!-- /.calc-output -->
+
+</div><!-- #tab-hamada -->
+
+<div id="tab-options" class="calc-panel">
+
+  <!-- LEFT: inputs + numeric output -->
+  <div class="calc-inputs">
+
+    <div class="opt-radio-row">
+      <div class="opt-radio-group">
+        <span class="opt-radio-label">TYPE</span>
+        <label class="opt-radio-item">
+          <input type="radio" name="opt-type" value="call" checked oninput="optDraw()"> CALL
+        </label>
+        <label class="opt-radio-item">
+          <input type="radio" name="opt-type" value="put" oninput="optDraw()"> PUT
+        </label>
+      </div>
+      <div class="opt-radio-group">
+        <span class="opt-radio-label">POSITION</span>
+        <label class="opt-radio-item">
+          <input type="radio" name="opt-pos" value="long" checked oninput="optDraw()"> LONG
+        </label>
+        <label class="opt-radio-item">
+          <input type="radio" name="opt-pos" value="short" oninput="optDraw()"> SHORT
+        </label>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>STRIKE PRICE K ($)</label>
+      <input type="number" id="opt-K" value="50" step="any" min="0" oninput="optDraw()">
+    </div>
+    <div class="input-group">
+      <label>OPTION PREMIUM / COST ($)</label>
+      <input type="number" id="opt-prem" value="5" step="any" min="0" oninput="optDraw()">
+    </div>
+    <div class="input-group">
+      <label>CURRENT STOCK PRICE S₀ ($) <span style="color:var(--muted);font-size:0.75em">(reference only)</span></label>
+      <input type="number" id="opt-S0" value="50" step="any" min="0" oninput="optDraw()">
+    </div>
+    <div class="input-group">
+      <label>STOCK PRICE AT EXPIRY S<sub style="font-size:0.8em">T</sub> ($) — for point calc</label>
+      <input type="number" id="opt-ST" value="60" step="any" min="0" oninput="optDraw()">
+    </div>
+
+    <!-- Numeric result panel -->
+    <div class="calc-output" style="margin-top:0.5rem;">
+      <div class="out-label">// POINT CALCULATION AT S<sub>T</sub> //</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1rem;">
+        <div>
+          <div class="out-label" style="margin-bottom:0.2rem;">PAYOFF</div>
+          <div class="out-value" id="opt-payoff-val" style="font-size:1.6rem;">—</div>
+        </div>
+        <div>
+          <div class="out-label" style="margin-bottom:0.2rem;">PROFIT</div>
+          <div class="out-value" id="opt-profit-val" style="font-size:1.6rem;color:var(--cyan);text-shadow:var(--cg);">—</div>
+        </div>
+      </div>
+
+      <div class="out-label">BREAK-EVEN PRICE</div>
+      <div class="out-value" id="opt-be-val" style="font-size:2.2rem;">—</div>
+
+      <div class="out-math" id="opt-math"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Chart.js canvas -->
+  <div class="calc-output" style="display:flex;flex-direction:column;padding:1rem;">
+    <div class="out-label" style="margin-bottom:0.5rem;">// PAYOFF &amp; PROFIT DIAGRAM //</div>
+    <div style="flex:1;min-height:320px;position:relative;">
+      <canvas id="opt-chart"></canvas>
+    </div>
+    <div style="display:flex;gap:1.5rem;margin-top:0.8rem;font-family:var(--fm);font-size:0.67rem;letter-spacing:0.1em;">
+      <span style="color:var(--cyan);">--- PAYOFF (ignores premium)</span>
+      <span style="color:var(--yellow);">&#9472;&#9472; PROFIT (net of premium)</span>
+      <span style="color:var(--mag);">&#9679; BREAK-EVEN</span>
+    </div>
+  </div>
+
+</div><!-- end tab-options -->
+
+
+<div id="tab-mm" class="calc-panel">
+
+  <!-- LEFT: inputs + LaTeX output -->
+  <div class="calc-inputs">
+
+    <div class="input-group">
+      <label>UNLEVERED FIRM VALUE V<sub>U</sub> ($M)</label>
+      <input type="number" id="mm-vu" value="100" step="any" min="1" oninput="mmUpdate()">
+    </div>
+    <div class="input-group">
+      <label>CORPORATE TAX RATE T<sub>c</sub> (%)</label>
+      <input type="number" id="mm-tc" value="21" step="any" min="0" max="100" oninput="mmUpdate()">
+    </div>
+
+    <div class="input-group">
+      <label>DEBT LEVEL D ($M) — <span id="mm-d-disp" style="color:var(--yellow)">0</span></label>
+      <input type="range" id="mm-d" value="0" min="0" max="100" step="0.5"
+             style="accent-color:var(--yellow);width:100%;cursor:pointer;"
+             oninput="document.getElementById('mm-d-disp').textContent=parseFloat(this.value).toFixed(1);mmUpdate()">
+    </div>
+
+    <div class="input-group">
+      <label>DISTRESS COST PARAM λ — <span id="mm-lam-disp" style="color:var(--mag)">0.10</span></label>
+      <input type="range" id="mm-lam" value="0.10" min="0" max="0.3" step="0.005"
+             style="accent-color:var(--mag);width:100%;cursor:pointer;"
+             oninput="document.getElementById('mm-lam-disp').textContent=parseFloat(this.value).toFixed(3);mmUpdate()">
+    </div>
+
+    <!-- Numeric / LaTeX output -->
+    <div class="calc-output" style="margin-top:0.5rem;">
+      <div class="out-label">// TRADE-OFF THEORY OUTPUT //</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1rem;">
+        <div>
+          <div class="out-label" style="margin-bottom:0.2rem;">LEVERED VALUE V<sub>L</sub></div>
+          <div class="out-value" id="mm-vl-val" style="font-size:1.5rem;">—</div>
+        </div>
+        <div>
+          <div class="out-label" style="margin-bottom:0.2rem;">OPTIMAL DEBT D*</div>
+          <div class="out-value" id="mm-dstar-val" style="font-size:1.5rem;color:var(--cyan);text-shadow:var(--cg);">—</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1.2rem;">
+        <div>
+          <div class="out-label" style="margin-bottom:0.2rem;">TAX SHIELD T<sub>c</sub>·D</div>
+          <div class="out-value" id="mm-shield-val" style="font-size:1.3rem;color:var(--green);text-shadow:0 0 8px var(--green);">—</div>
+        </div>
+        <div>
+          <div class="out-label" style="margin-bottom:0.2rem;">DISTRESS COST λD²/V<sub>U</sub></div>
+          <div class="out-value" id="mm-dist-val" style="font-size:1.3rem;color:var(--mag);text-shadow:var(--mg);">—</div>
+        </div>
+      </div>
+
+      <div class="out-math" id="mm-math"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Chart.js canvas -->
+  <div class="calc-output" style="display:flex;flex-direction:column;padding:1rem;">
+    <div class="out-label" style="margin-bottom:0.5rem;">// FIRM VALUE vs. DEBT LEVEL //</div>
+    <div style="flex:1;min-height:320px;position:relative;">
+      <canvas id="mm-chart"></canvas>
+    </div>
+    <div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:0.8rem;font-family:var(--fm);font-size:0.67rem;letter-spacing:0.1em;">
+      <span style="color:var(--yellow);">&#9472;&#9472; V<sub>L</sub> (trade-off)</span>
+      <span style="color:var(--cyan);">--- V<sub>U</sub> + T<sub>c</sub>·D (M&amp;M+tax)</span>
+      <span style="color:var(--mag);">&#9472;&#9472; Distress cost</span>
+      <span style="color:rgba(255,255,255,0.4);">| D*</span>
+    </div>
+  </div>
+
+</div><!-- end tab-mm -->
+
+
+<div id="tab-dupont" class="calc-panel">
+
+  <!-- INPUTS -->
+  <div class="calc-inputs">
+    <div class="input-group">
+      <label>REVENUE ($M)</label>
+      <input type="number" id="dp-rev" placeholder="e.g. 10000" step="any">
+    </div>
+    <div class="input-group">
+      <label>NET INCOME ($M)</label>
+      <input type="number" id="dp-ni" placeholder="e.g. 800" step="any">
+    </div>
+    <div class="input-group">
+      <label>TOTAL ASSETS ($M)</label>
+      <input type="number" id="dp-assets" placeholder="e.g. 12000" step="any">
+    </div>
+    <div class="input-group">
+      <label>TOTAL EQUITY ($M)</label>
+      <input type="number" id="dp-equity" placeholder="e.g. 5000" step="any">
+    </div>
+    <button class="btn-calc" onclick="calcDuPont()">DECOMPOSE ROE ›</button>
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="calc-output">
+    <div class="out-label">// DUPONT DECOMPOSITION //</div>
+    <div class="out-value" id="dp-result">—</div>
+    <div class="out-desc"  id="dp-desc">Enter financial statement data</div>
+
+    <!-- Component rows -->
+    <div class="dp-components" id="dp-components" style="display:none">
+      <div class="dp-comp-row">
+        <span class="dp-comp-tag cyan">PROFIT<br>MARGIN</span>
+        <span class="dp-comp-val cyan" id="dp-pm-val">—</span>
+        <span class="dp-comp-desc" id="dp-pm-desc"></span>
+      </div>
+      <div class="dp-comp-row">
+        <span class="dp-comp-tag yell">ASSET<br>TURNOVER</span>
+        <span class="dp-comp-val yell" id="dp-at-val">—</span>
+        <span class="dp-comp-desc" id="dp-at-desc"></span>
+      </div>
+      <div class="dp-comp-row">
+        <span class="dp-comp-tag mag">EQUITY<br>MULTIPLIER</span>
+        <span class="dp-comp-val mag" id="dp-em-val">—</span>
+        <span class="dp-comp-desc" id="dp-em-desc"></span>
+      </div>
+    </div>
+
+    <!-- Waterfall bars -->
+    <div class="dp-waterfall" id="dp-waterfall" style="display:none">
+      <div class="dp-bar-row">
+        <span class="dp-bar-label">Profit Margin</span>
+        <div class="dp-bar-track">
+          <div class="dp-bar-fill cyan" id="dp-bar-pm" style="width:0%">—</div>
+        </div>
+      </div>
+      <div class="dp-bar-row">
+        <span class="dp-bar-label">Asset Turnover</span>
+        <div class="dp-bar-track">
+          <div class="dp-bar-fill yell" id="dp-bar-at" style="width:0%">—</div>
+        </div>
+      </div>
+      <div class="dp-bar-row">
+        <span class="dp-bar-label">Equity Mult.</span>
+        <div class="dp-bar-track">
+          <div class="dp-bar-fill mag" id="dp-bar-em" style="width:0%">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LaTeX identity -->
+    <div class="out-math" id="dp-math"></div>
+
+    <!-- Key insight -->
+    <div class="dp-insight" id="dp-insight" style="display:none">
+      <strong>KEY INSIGHT:</strong> If ROE is high because of a large <strong style="color:var(--mag)">Equity Multiplier</strong>
+      (leverage), that's <em>riskier</em> than high ROE driven by strong
+      <strong style="color:var(--cyan)">Profit Margin</strong> or efficient
+      <strong style="color:var(--yellow)">Asset Turnover</strong>.
+      DuPont lets you see <em>why</em> ROE is what it is — and whether it's
+      built on operational excellence or on borrowed money.
+    </div>
+  </div>
+
+</div><!-- /tab-dupont -->
+
+
+<div id="tab-fcf" class="calc-panel">
+<div class="fcf-two-col">
+
+  <!-- LEFT: STEP FORM -->
+  <div class="fcf-steps">
+
+    <!-- STEP 1: NOPAT -->
+    <div class="fcf-step">
+      <div class="fcf-step-head">
+        <span><span class="fcf-step-num">01</span>COMPUTE NOPAT</span>
+      </div>
+      <div class="fcf-step-inputs">
+        <div class="input-group">
+          <label>EBIT ($M)</label>
+          <input type="number" id="fcf-ebit" placeholder="e.g. 1200" step="any" oninput="fcfLive()">
+        </div>
+        <div class="input-group">
+          <label>TAX RATE T (%)</label>
+          <input type="number" id="fcf-tax" placeholder="e.g. 21" step="any" oninput="fcfLive()">
+        </div>
+      </div>
+      <div class="fcf-step-sub">
+        NOPAT = EBIT × (1 − T) = <span class="fcf-sub-val" id="fcf-nopat-live">—</span>
+      </div>
+    </div>
+
+    <!-- STEP 2: NOWC current year -->
+    <div class="fcf-step">
+      <div class="fcf-step-head">
+        <span><span class="fcf-step-num">02</span>NOWC — CURRENT YEAR</span>
+      </div>
+      <div class="fcf-step-inputs">
+        <div class="input-group">
+          <label>CURRENT ASSETS ($M)</label>
+          <input type="number" id="fcf-ca" placeholder="e.g. 3000" step="any" oninput="fcfLive()">
+        </div>
+        <div class="input-group">
+          <label>CURRENT LIABILITIES ($M)</label>
+          <input type="number" id="fcf-cl" placeholder="e.g. 1800" step="any" oninput="fcfLive()">
+        </div>
+        <div class="input-group">
+          <label>CASH &amp; EQUIVALENTS ($M)</label>
+          <input type="number" id="fcf-cash" placeholder="e.g. 400" step="any" oninput="fcfLive()">
+        </div>
+        <div class="input-group">
+          <label>SHORT-TERM DEBT ($M)</label>
+          <input type="number" id="fcf-std" placeholder="e.g. 200" step="any" oninput="fcfLive()">
+        </div>
+      </div>
+      <div class="fcf-step-sub">
+        NOWC<sub>t</sub> = (CA − Cash) − (CL − ST Debt) = <span class="fcf-sub-val" id="fcf-nowc-live">—</span>
+      </div>
+    </div>
+
+    <!-- STEP 3: PPE change -->
+    <div class="fcf-step">
+      <div class="fcf-step-head">
+        <span><span class="fcf-step-num">03</span>CHANGE IN NET PPE</span>
+      </div>
+      <div class="fcf-step-inputs">
+        <div class="input-group">
+          <label>NET PPE THIS YEAR ($M)</label>
+          <input type="number" id="fcf-ppe1" placeholder="e.g. 5000" step="any" oninput="fcfLive()">
+        </div>
+        <div class="input-group">
+          <label>NET PPE LAST YEAR ($M)</label>
+          <input type="number" id="fcf-ppe0" placeholder="e.g. 4600" step="any" oninput="fcfLive()">
+        </div>
+      </div>
+      <div class="fcf-step-sub">
+        ΔPPE = PPE<sub>t</sub> − PPE<sub>t-1</sub> = <span class="fcf-sub-val" id="fcf-dppe-live">—</span>
+      </div>
+    </div>
+
+    <!-- STEP 4: NOWC prior year -->
+    <div class="fcf-step">
+      <div class="fcf-step-head">
+        <span><span class="fcf-step-num">04</span>NOWC — PRIOR YEAR</span>
+      </div>
+      <div class="fcf-step-inputs">
+        <div class="input-group">
+          <label>PRIOR YEAR CA ($M)</label>
+          <input type="number" id="fcf-ca0" placeholder="e.g. 2700" step="any" oninput="fcfLive()">
+        </div>
+        <div class="input-group">
+          <label>PRIOR YEAR CL ($M)</label>
+          <input type="number" id="fcf-cl0" placeholder="e.g. 1700" step="any" oninput="fcfLive()">
+        </div>
+        <div class="input-group">
+          <label>PRIOR YEAR CASH ($M)</label>
+          <input type="number" id="fcf-cash0" placeholder="e.g. 350" step="any" oninput="fcfLive()">
+        </div>
+        <div class="input-group">
+          <label>PRIOR YEAR ST DEBT ($M)</label>
+          <input type="number" id="fcf-std0" placeholder="e.g. 180" step="any" oninput="fcfLive()">
+        </div>
+      </div>
+      <div class="fcf-step-sub">
+        NOWC<sub>t-1</sub> = (CA − Cash) − (CL − ST Debt) = <span class="fcf-sub-val" id="fcf-nowc0-live">—</span>
+        &nbsp;·&nbsp; ΔNOWC = <span class="fcf-sub-val" id="fcf-dnowc-live">—</span>
+      </div>
+    </div>
+
+    <!-- STEP 5: Compute button -->
+    <div class="fcf-step" style="border-color:rgba(252,238,9,0.28)">
+      <div class="fcf-step-head">
+        <span><span class="fcf-step-num" style="background:var(--yellow)">05</span>COMPUTE FREE CASH FLOW</span>
+      </div>
+      <div class="fcf-step-sub" style="font-size:0.75rem; margin-bottom:0.7rem;">
+        ΔTNOC = ΔPPE + ΔNOWC &nbsp;·&nbsp; FCF = NOPAT − ΔTNOC
+      </div>
+      <button class="btn-calc" onclick="calcFCF()">BUILD FCF ›</button>
+    </div>
+
+  </div><!-- /fcf-steps -->
+
+  <!-- RIGHT: OUTPUT -->
+  <div class="calc-output">
+    <div class="out-label">// FCF RESULT //</div>
+    <div class="out-value" id="fcf-result" style="font-size:2rem">—</div>
+    <div class="out-desc" id="fcf-desc">Complete all steps and compute</div>
+
+    <!-- Waterfall summary table -->
+    <div class="fcf-waterfall" id="fcf-waterfall" style="display:none">
+      <div class="fcf-wf-row">
+        <span class="fcf-wf-label">NOPAT</span>
+        <span class="fcf-wf-formula">EBIT × (1 − T)</span>
+        <span class="fcf-wf-val pos" id="wf-nopat">—</span>
+      </div>
+      <div class="fcf-wf-row">
+        <span class="fcf-wf-label">NOWC<sub>t</sub></span>
+        <span class="fcf-wf-formula">(CA − Cash) − (CL − STD)</span>
+        <span class="fcf-wf-val pos" id="wf-nowc">—</span>
+      </div>
+      <div class="fcf-wf-row">
+        <span class="fcf-wf-label">NOWC<sub>t-1</sub></span>
+        <span class="fcf-wf-formula">prior year</span>
+        <span class="fcf-wf-val pos" id="wf-nowc0">—</span>
+      </div>
+      <div class="fcf-wf-row">
+        <span class="fcf-wf-label">ΔNOWC</span>
+        <span class="fcf-wf-formula">NOWC<sub>t</sub> − NOWC<sub>t-1</sub></span>
+        <span class="fcf-wf-val" id="wf-dnowc">—</span>
+      </div>
+      <div class="fcf-wf-row">
+        <span class="fcf-wf-label">ΔPPE</span>
+        <span class="fcf-wf-formula">PPE<sub>t</sub> − PPE<sub>t-1</sub></span>
+        <span class="fcf-wf-val" id="wf-dppe">—</span>
+      </div>
+      <div class="fcf-wf-row">
+        <span class="fcf-wf-label">ΔTNOC</span>
+        <span class="fcf-wf-formula">ΔPPE + ΔNOWC</span>
+        <span class="fcf-wf-val" id="wf-dtnoc">—</span>
+      </div>
+      <div class="fcf-wf-row fcf-total">
+        <span class="fcf-wf-label" style="color:var(--yellow);font-weight:700">FCF</span>
+        <span class="fcf-wf-formula" style="color:var(--yellow)">NOPAT − ΔTNOC</span>
+        <span class="fcf-wf-val yell" id="wf-fcf">—</span>
+      </div>
+    </div>
+
+    <!-- LaTeX derivation -->
+    <div class="out-math" id="fcf-math"></div>
+
+    <!-- Key insight -->
+    <div class="fcf-insight" id="fcf-insight" style="display:none">
+      <strong>KEY INSIGHT:</strong>
+      <strong>Positive FCF</strong> = the company generates cash beyond what it needs to invest —
+      it can pay dividends, buy back stock, or pay down debt.
+      <strong>Negative FCF during a growth phase is completely normal</strong> —
+      Amazon ran negative FCF for years while building its fulfillment network.
+      The question is whether capital investment today creates value tomorrow.
+      Check: is NOPAT growing fast enough to justify ΔTNOC?
+    </div>
+  </div>
+
+</div><!-- /fcf-two-col -->
+</div><!-- /tab-fcf -->
+
+
     </div>
 
   </div>
@@ -1532,5 +2425,852 @@ $$P^*_{\\text{base}} = \\frac{\\EV - D + \\text{Cash}}{\\text{Shares}} = \\frac{
 }
 </script>
 
+<script>
+if(typeof Chart === 'undefined'){
+  var _cjs = document.createElement('script');
+  _cjs.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js';
+  document.head.appendChild(_cjs);
+}
+
+
+/* ═══ BOND PRICER ═══ */
+/* ════════════════════════════════════════════
+   BOND PRICER
+   ════════════════════════════════════════════ */
+async function calcBond(){
+  const solve    = $('bond-solve').value;
+  const F        = parseFloat($('bond-face').value)     || 1000;
+  const cpnRate  = parseFloat($('bond-coupon').value)   / 100;
+  const nYrs     = parseFloat($('bond-n').value);
+  const isSemi   = $('bond-semi').checked;
+  const isCall   = $('bond-callable').checked;
+
+  // Periodicising
+  const m        = isSemi ? 2 : 1;          // periods per year
+  const C_ann    = F * cpnRate;             // annual coupon $
+  const C        = C_ann / m;               // coupon per period
+  const N        = nYrs * m;               // total periods
+
+  let price, ytm_annual, errFlag = false;
+
+  // ── helper: price given periodic rate r
+  function bondPrice(r, nPer, faceVal){
+    if(r === 0) return C * nPer + faceVal;
+    return C * (1 - Math.pow(1+r, -nPer)) / r + faceVal * Math.pow(1+r, -nPer);
+  }
+
+  // ── Newton-Raphson for YTM
+  function solveYTM(mktPrice, nPer, faceVal){
+    let r = (C_ann / mktPrice);  // initial guess
+    for(let i = 0; i < 300; i++){
+      const p  = bondPrice(r, nPer, faceVal);
+      const dp = C * (
+        (nPer * Math.pow(1+r, -nPer-1) * r - (1 - Math.pow(1+r, -nPer))) / (r*r)
+      ) - faceVal * nPer * Math.pow(1+r, -nPer-1);
+      const delta = (p - mktPrice) / dp;
+      r -= delta;
+      if(Math.abs(delta) < 1e-12) break;
+    }
+    return r; // periodic rate
+  }
+
+  try {
+    if(solve === 'price'){
+      const ytm_in = parseFloat($('bond-ytm').value);
+      if(isNaN(nYrs) || isNaN(cpnRate) || isNaN(ytm_in)){
+        throw new Error('missing inputs');
+      }
+      const r = ytm_in / 100 / m;
+      price = bondPrice(r, N, F);
+      ytm_annual = ytm_in / 100;
+    } else {
+      // solve for YTM
+      const mktP = parseFloat($('bond-price-in').value);
+      if(isNaN(nYrs) || isNaN(cpnRate) || isNaN(mktP)){
+        throw new Error('missing inputs');
+      }
+      price = mktP;
+      const r_per = solveYTM(mktP, N, F);
+      ytm_annual  = r_per * m;
+    }
+
+    // ── Macaulay Duration
+    const r_per = ytm_annual / m;
+    let durNum = 0, durDen = 0;
+    for(let t = 1; t <= N; t++){
+      const pv_t = C / Math.pow(1 + r_per, t);
+      durNum += (t / m) * pv_t;  // time in years
+      durDen += pv_t;
+    }
+    const pv_face = F / Math.pow(1 + r_per, N);
+    durNum += nYrs * pv_face;
+    durDen += pv_face;
+    const macD = durNum / durDen;        // years
+    const modD = macD / (1 + r_per);    // modified duration
+
+    // ── YTC (Newton-Raphson on call date)
+    let ytc_annual = NaN;
+    if(isCall){
+      const callPx   = parseFloat($('bond-callprice').value) || F;
+      const callYrs  = parseFloat($('bond-callyrs').value);
+      if(!isNaN(callYrs)){
+        const Nc = callYrs * m;
+        const rc = solveYTM(price, Nc, callPx);
+        ytc_annual = rc * m;
+      }
+    }
+
+    // ── Display
+    const priceDisp = solve === 'price'
+      ? '$' + price.toFixed(2)
+      : '$' + price.toFixed(2);  // input price echoed
+    const mainVal = solve === 'price'
+      ? '$' + price.toFixed(2)
+      : (ytm_annual * 100).toFixed(4) + '%';
+    const mainDesc = solve === 'price'
+      ? `Bond price at YTM = ${(ytm_annual*100).toFixed(4)}%`
+      : `YTM given market price $${price.toFixed(2)}`;
+
+    $('bond-result').textContent = mainVal;
+    $('bond-desc').textContent   = mainDesc;
+
+    // secondary metrics
+    $('bond-dur').textContent    = macD.toFixed(3);
+    $('bond-mdur').textContent   = modD.toFixed(3);
+    const metricsEl = $('bond-metrics');
+    metricsEl.style.display      = 'grid';
+    $('bond-intuition').style.display = 'block';
+
+    if(isCall && !isNaN(ytc_annual)){
+      $('bond-ytc-val').textContent  = (ytc_annual*100).toFixed(4) + '%';
+      $('bond-ytc-box').style.display = 'block';
+    } else {
+      $('bond-ytc-box').style.display = 'none';
+    }
+
+    // ── MathJax
+    const mPer    = m === 2 ? '\\tfrac{1}{2}' : '1';
+    const rSym    = m === 2 ? '\\tfrac{\\text{YTM}}{2}' : '\\text{YTM}';
+    const perLbl  = m === 2 ? '\\text{semi-annual}' : '\\text{annual}';
+    const couponStr = C.toFixed(2);
+    const ytmPct  = (ytm_annual*100).toFixed(4);
+    const rPerPct = (r_per*100).toFixed(4);
+    const Ndisp   = N % 1 === 0 ? N.toString() : N.toFixed(1);
+
+    // Show first 3 coupon terms then ellipsis
+    const showTerms = Math.min(3, N);
+    let sumTerms = '';
+    for(let t = 1; t <= showTerms; t++){
+      sumTerms += `\\frac{${couponStr}}{(1+${rPerPct}\\%)^{${t}}}`;
+      if(t < showTerms) sumTerms += ' + ';
+    }
+    if(N > showTerms) sumTerms += ' + \\cdots';
+
+    const ytcLine = (isCall && !isNaN(ytc_annual))
+      ? `\n\n$$\\text{YTC} = ${(ytc_annual*100).toFixed(4)}\\%\\quad(\\text{call price }\\$${($('bond-callprice').value||F)},\\;\\text{call yr }${$('bond-callyrs').value})$$`
+      : '';
+
+    const tex = `
+$$P = \\sum_{t=1}^{N} \\frac{C}{(1+r)^{t}} + \\frac{F}{(1+r)^{N}}$$
+
+$$P = ${sumTerms} + \\frac{${F.toFixed(0)}}{(1+${rPerPct}\\%)^{${Ndisp}}} = \\boxed{\\$${price.toFixed(2)}}$$
+
+$$\\text{YTM}_{\\text{annual}} = ${ytmPct}\\%,\\quad r_{${perLbl}} = ${rPerPct}\\%,\\quad N = ${Ndisp}\\text{ periods}$$
+
+$$D_{\\text{Mac}} = \\frac{\\sum_{t=1}^{N} t/m\\cdot PV(C_t) + N/m\\cdot PV(F)}{P} = ${macD.toFixed(3)}\\text{ yr}$$
+
+$$D^* = \\frac{D_{\\text{Mac}}}{1+r} = \\frac{${macD.toFixed(3)}}{1+${rPerPct}\\%} = ${modD.toFixed(3)}\\quad\\Rightarrow\\quad \\Delta P\\approx -D^*\\cdot P\\cdot\\Delta y$$
+${ytcLine}
+    `.trim();
+
+    $('bond-math').innerHTML = tex;
+    await mjTypeset($('bond-math'));
+
+  } catch(e){
+    $('bond-result').textContent = 'ERR';
+    $('bond-desc').textContent   = 'Check inputs — all fields required for chosen solve mode';
+    $('bond-math').innerHTML     = '';
+    $('bond-metrics').style.display  = 'none';
+    $('bond-intuition').style.display = 'none';
+  }
+}
+
+
+/* ════════════════════════════════════════════
+   HAMADA BETA WORKSHOP
+   ════════════════════════════════════════════ */
+async function calcHamada(){
+  const bL_comp = parseFloat($('ham-bl').value);
+  const de_comp = parseFloat($('ham-de-comp').value);
+  const tax     = parseFloat($('ham-tax').value) / 100;
+  const de_tgt  = parseFloat($('ham-de-tgt').value);
+  const rf      = parseFloat($('ham-rf').value)  / 100;   // may be NaN
+  const erp     = parseFloat($('ham-erp').value) / 100;   // may be NaN
+
+  if([bL_comp, de_comp, tax, de_tgt].some(isNaN)){
+    $('ham-result').textContent = 'ERR';
+    $('ham-desc').textContent   = 'Fill all four required fields';
+    $('ham-math').innerHTML     = '';
+    return;
+  }
+
+  // ── Hamada equations
+  // β_U = β_L / [1 + (1-T)(D/E)]
+  const bU    = bL_comp / (1 + (1 - tax) * de_comp);
+  // β_L,target = β_U × [1 + (1-T)(D/E)_target]
+  const bL_tgt = bU * (1 + (1 - tax) * de_tgt);
+
+  // ── Optional CAPM
+  const hasCAPM = !isNaN(rf) && !isNaN(erp);
+  const re      = hasCAPM ? rf + bL_tgt * erp : NaN;
+
+  // ── Display
+  $('ham-result').textContent   = bU.toFixed(4);
+  $('ham-desc').textContent     = 'β_U — unlevered (asset) beta';
+
+  $('ham-bu-val').textContent   = bU.toFixed(4);
+  $('ham-blt-val').textContent  = bL_tgt.toFixed(4);
+
+  const metricsEl = $('ham-metrics');
+  metricsEl.style.display = 'grid';
+  $('ham-intuition').style.display = 'block';
+
+  if(hasCAPM){
+    $('ham-re-val').textContent      = (re*100).toFixed(2) + '%';
+    $('ham-capm-box').style.display  = 'block';
+  } else {
+    $('ham-capm-box').style.display  = 'none';
+  }
+
+  // ── MathJax
+  const taxPct   = (tax*100).toFixed(0);
+  const deC      = de_comp.toFixed(4);
+  const deT      = de_tgt.toFixed(4);
+
+  const capmLine = hasCAPM
+    ? `\n\n$$r_e = r_f + \\beta_{L,\\text{target}}\\cdot\\text{ERP} = ${(rf*100).toFixed(2)}\\% + ${bL_tgt.toFixed(4)}\\times${(erp*100).toFixed(2)}\\% = \\boxed{${(re*100).toFixed(2)}\\%}$$`
+    : '';
+
+  const tex = `
+$$\\textbf{Step 1 — Unlever:}\\quad
+\\beta_U = \\frac{\\beta_L^{\\text{comp}}}{1+(1-T)\\left(\\tfrac{D}{E}\\right)_{\\text{comp}}}
+= \\frac{${bL_comp}}{1+(1-${taxPct}\\%)\\times${deC}}
+= \\boxed{${bU.toFixed(4)}}$$
+
+$$\\textbf{Step 2 — Re-lever:}\\quad
+\\beta_{L,\\text{target}} = \\beta_U\\times\\left[1+(1-T)\\left(\\tfrac{D}{E}\\right)_{\\text{target}}\\right]
+= ${bU.toFixed(4)}\\times\\left[1+(1-${taxPct}\\%)\\times${deT}\\right]
+= \\boxed{${bL_tgt.toFixed(4)}}$$
+${capmLine}
+  `.trim();
+
+  $('ham-math').innerHTML = tex;
+  await mjTypeset($('ham-math'));
+}
+
+
+/* ═══ OPTIONS + M&M ═══ */
+/* ── shared MathJax helper ─────────────────────────────────── */
+async function mjTypeset(el){
+  if(window.MathJax && MathJax.typesetPromise){
+    try{ await MathJax.typesetPromise([el]); }catch(e){}
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TOOL 1 — OPTIONS PAYOFF DIAGRAM
+══════════════════════════════════════════════════════════════ */
+let optChartInstance = null;
+
+function optValues(){
+  const K    = parseFloat(document.getElementById('opt-K').value)    || 0;
+  const prem = parseFloat(document.getElementById('opt-prem').value) || 0;
+  const S0   = parseFloat(document.getElementById('opt-S0').value)   || 0;
+  const ST   = parseFloat(document.getElementById('opt-ST').value);
+  const type = document.querySelector('input[name="opt-type"]:checked').value; // 'call'|'put'
+  const pos  = document.querySelector('input[name="opt-pos"]:checked').value;  // 'long'|'short'
+  return {K, prem, S0, ST, type, pos};
+}
+
+function rawPayoff(S, K, type){
+  if(type === 'call') return Math.max(S - K, 0);
+  return Math.max(K - S, 0);
+}
+
+function posPayoff(S, K, type, pos){
+  const p = rawPayoff(S, K, type);
+  return pos === 'long' ? p : -p;
+}
+
+function posProfit(S, K, type, pos, prem){
+  const payoff = posPayoff(S, K, type, pos);
+  return pos === 'long' ? payoff - prem : payoff + prem;
+}
+
+function breakEven(K, type, pos, prem){
+  // Long call: BE = K + prem
+  // Short call: BE = K + prem (seller keeps prem, stock must stay below)
+  // Long put: BE = K - prem
+  // Short put: BE = K - prem
+  if(type === 'call') return K + prem;
+  return K - prem;
+}
+
+async function optDraw(){
+  if(typeof Chart === 'undefined') return; // CDN not yet loaded
+
+  const {K, prem, S0, ST, type, pos} = optValues();
+  if(K <= 0) return;
+
+  const xMax   = Math.max(2 * K, ST * 1.2, 1);
+  const xMin   = 0;
+  const points = 200;
+  const step   = (xMax - xMin) / points;
+  const labels = [];
+  const payoffData = [];
+  const profitData = [];
+
+  for(let i = 0; i <= points; i++){
+    const S = xMin + i * step;
+    labels.push(+S.toFixed(2));
+    payoffData.push(+posPayoff(S, K, type, pos).toFixed(4));
+    profitData.push(+posProfit(S, K, type, pos, prem).toFixed(4));
+  }
+
+  const BE = breakEven(K, type, pos, prem);
+
+  // Point calculation
+  const ptPayoff = posPayoff(ST, K, type, pos);
+  const ptProfit = posProfit(ST, K, type, pos, prem);
+  document.getElementById('opt-payoff-val').textContent = isNaN(ptPayoff) ? '—' : '$' + ptPayoff.toFixed(2);
+  document.getElementById('opt-profit-val').textContent = isNaN(ptProfit) ? '—' :
+    (ptProfit >= 0 ? '+' : '') + '$' + ptProfit.toFixed(2);
+  document.getElementById('opt-profit-val').style.color =
+    ptProfit >= 0 ? 'var(--cyan)' : 'var(--mag)';
+
+  document.getElementById('opt-be-val').textContent = '$' + BE.toFixed(2);
+
+  // LaTeX
+  const isLong = pos === 'long';
+  const isCall = type === 'call';
+  let payoffTex, profitTex, beTex;
+
+  if(isCall && isLong){
+    payoffTex = `\\text{Payoff} = \\max(S_T - K,\\;0)`;
+    profitTex = `\\text{Profit} = \\max(S_T - K,\\;0) - C`;
+    beTex     = `S_T^* = K + C = ${K} + ${prem} = ${BE.toFixed(2)}`;
+  } else if(isCall && !isLong){
+    payoffTex = `\\text{Payoff} = -\\max(S_T - K,\\;0)`;
+    profitTex = `\\text{Profit} = -\\max(S_T - K,\\;0) + C`;
+    beTex     = `S_T^* = K + C = ${K} + ${prem} = ${BE.toFixed(2)}`;
+  } else if(!isCall && isLong){
+    payoffTex = `\\text{Payoff} = \\max(K - S_T,\\;0)`;
+    profitTex = `\\text{Profit} = \\max(K - S_T,\\;0) - P`;
+    beTex     = `S_T^* = K - P = ${K} - ${prem} = ${BE.toFixed(2)}`;
+  } else {
+    payoffTex = `\\text{Payoff} = -\\max(K - S_T,\\;0)`;
+    profitTex = `\\text{Profit} = -\\max(K - S_T,\\;0) + P`;
+    beTex     = `S_T^* = K - P = ${K} - ${prem} = ${BE.toFixed(2)}`;
+  }
+
+  const mathEl = document.getElementById('opt-math');
+  mathEl.innerHTML =
+    `<div>\\(${payoffTex}\\)</div>` +
+    `<div style="margin-top:0.4rem">\\(${profitTex}\\)</div>` +
+    `<div style="margin-top:0.6rem;color:var(--yellow);font-family:var(--fm);font-size:0.67rem;letter-spacing:0.15em">BREAK-EVEN:</div>` +
+    `<div>\\(${beTex}\\)</div>`;
+  await mjTypeset(mathEl);
+
+  // Chart
+  const ctx = document.getElementById('opt-chart').getContext('2d');
+  if(optChartInstance) optChartInstance.destroy();
+
+  // Break-even annotation point dataset
+  const beY = posProfit(BE, K, type, pos, prem); // should be ~0
+  const beX = BE;
+
+  optChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Payoff',
+          data: payoffData,
+          borderColor: '#00d4ff',
+          borderWidth: 2,
+          borderDash: [6, 4],
+          pointRadius: 0,
+          tension: 0,
+          fill: false,
+        },
+        {
+          label: 'Profit',
+          data: profitData,
+          borderColor: '#fcee09',
+          borderWidth: 2.5,
+          pointRadius: 0,
+          tension: 0,
+          fill: false,
+        },
+        {
+          label: 'Break-even',
+          data: [{x: +BE.toFixed(2), y: 0}],
+          type: 'scatter',
+          pointStyle: 'circle',
+          pointRadius: 7,
+          pointBackgroundColor: '#ff2a6d',
+          pointBorderColor: '#ff2a6d',
+          showLine: false,
+        }
+      ]
+    },
+    options: {
+      animation: false,
+      responsive: true,
+      maintainAspectRatio: false,
+      parsing: { xAxisKey: 'x', yAxisKey: 'y' },
+      layout: { padding: { top: 10, right: 10 } },
+      scales: {
+        x: {
+          type: 'linear',
+          title: {
+            display: true,
+            text: 'Stock price at expiry  S_T  ($)',
+            color: '#686888',
+            font: { family: "'Share Tech Mono', monospace", size: 11 }
+          },
+          min: xMin, max: xMax,
+          ticks: { color: '#686888', font: { family: "'Share Tech Mono', monospace", size: 10 }, maxTicksLimit: 8 },
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          border: { color: 'rgba(255,255,255,0.1)' }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Value ($)',
+            color: '#686888',
+            font: { family: "'Share Tech Mono', monospace", size: 11 }
+          },
+          ticks: { color: '#686888', font: { family: "'Share Tech Mono', monospace", size: 10 } },
+          grid: {
+            color: ctx2 => ctx2.tick.value === 0 ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.05)'
+          },
+          border: { color: 'rgba(255,255,255,0.1)' }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0d0d1a',
+          borderColor: 'rgba(252,238,9,0.3)',
+          borderWidth: 1,
+          titleColor: '#fcee09',
+          bodyColor: '#c8cde8',
+          titleFont: { family: "'Share Tech Mono', monospace" },
+          bodyFont:  { family: "'Share Tech Mono', monospace" },
+          callbacks: {
+            title: items => `S_T = $${Number(items[0].label).toFixed(2)}`,
+            label: item => {
+              if(item.dataset.label === 'Break-even') return ` Break-even: $${BE.toFixed(2)}`;
+              return ` ${item.dataset.label}: $${Number(item.raw).toFixed(2)}`;
+            }
+          }
+        },
+        annotation: undefined // no plugin needed; we use a scatter point
+      }
+    }
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TOOL 2 — M&M LEVERAGE EXPLORER
+══════════════════════════════════════════════════════════════ */
+let mmChartInstance = null;
+
+function mmVals(){
+  const VU  = parseFloat(document.getElementById('mm-vu').value)  || 100;
+  const Tc  = parseFloat(document.getElementById('mm-tc').value)  / 100 || 0.21;
+  const D   = parseFloat(document.getElementById('mm-d').value)   || 0;
+  const lam = parseFloat(document.getElementById('mm-lam').value) || 0;
+  return {VU, Tc, D, lam};
+}
+
+function mmVL(VU, Tc, D, lam){
+  return VU + Tc * D - lam * D * D / VU;
+}
+
+function mmOptD(VU, Tc, lam){
+  if(lam === 0) return Infinity; // no distress cost → all debt
+  return (Tc * VU) / (2 * lam);
+}
+
+async function mmUpdate(){
+  if(typeof Chart === 'undefined') return;
+
+  const {VU, Tc, D, lam} = mmVals();
+
+  // Keep debt slider max in sync with VU
+  const slider = document.getElementById('mm-d');
+  slider.max = VU;
+  if(parseFloat(slider.value) > VU){ slider.value = VU; document.getElementById('mm-d-disp').textContent = VU.toFixed(1); }
+
+  const shield  = Tc * D;
+  const distCst = lam * D * D / VU;
+  const VL      = VU + shield - distCst;
+  const Dstar   = mmOptD(VU, Tc, lam);
+  const Dstar_c = Math.min(Dstar, VU); // clamp for display
+
+  // Numeric display
+  document.getElementById('mm-vl-val').textContent    = '$' + VL.toFixed(2) + 'M';
+  document.getElementById('mm-dstar-val').textContent  = isFinite(Dstar) ? '$' + Dstar_c.toFixed(2) + 'M' : '∞ (λ=0)';
+  document.getElementById('mm-shield-val').textContent = '$' + shield.toFixed(2) + 'M';
+  document.getElementById('mm-dist-val').textContent   = '$' + distCst.toFixed(2) + 'M';
+
+  // LaTeX
+  const mathEl = document.getElementById('mm-math');
+  const DstarStr = isFinite(Dstar) ? Dstar_c.toFixed(2) : '\\infty';
+  mathEl.innerHTML = `
+    <div>\\(V_L = V_U + T_c\\cdot D - \\lambda\\dfrac{D^2}{V_U}\\)</div>
+    <div style="margin-top:0.4rem">
+      \\(V_L = ${VU} + ${(Tc*100).toFixed(1)}\\%\\times ${D.toFixed(1)} - ${lam.toFixed(3)}\\cdot\\dfrac{${D.toFixed(1)}^2}{${VU}} = ${VL.toFixed(2)}\\)
+    </div>
+    <div style="margin-top:0.6rem">\\(D^* = \\dfrac{T_c\\,V_U}{2\\lambda} = \\dfrac{${(Tc*100).toFixed(1)}\\%\\times ${VU}}{2\\times ${lam.toFixed(3)}} = ${DstarStr}\\)</div>
+    <div style="margin-top:0.4rem">
+      \\(\\text{Tax shield} = T_c D = ${shield.toFixed(2)},\\quad
+         \\text{Distress} = \\lambda\\tfrac{D^2}{V_U} = ${distCst.toFixed(2)}\\)
+    </div>`;
+  await mjTypeset(mathEl);
+
+  // Build chart data: D from 0 to VU
+  const pts = 200;
+  const dStep = VU / pts;
+  const dVals = [], vlVals = [], mmTaxVals = [], distVals = [];
+
+  for(let i = 0; i <= pts; i++){
+    const d = i * dStep;
+    dVals.push(+d.toFixed(3));
+    vlVals.push(+(VU + Tc * d - lam * d * d / VU).toFixed(4));
+    mmTaxVals.push(+(VU + Tc * d).toFixed(4));
+    distVals.push(+(lam * d * d / VU).toFixed(4));
+  }
+
+  const ctx = document.getElementById('mm-chart').getContext('2d');
+  if(mmChartInstance) mmChartInstance.destroy();
+
+  // Build vertical-line dataset for D*
+  const dstarDataset = isFinite(Dstar) && Dstar_c > 0 ? [
+    { x: +Dstar_c.toFixed(3), y: Math.min(VU + Tc * Dstar_c, VU * 1.5) },
+    { x: +Dstar_c.toFixed(3), y: 0 }
+  ] : [];
+
+  mmChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: dVals,
+      datasets: [
+        {
+          label: 'V_L (trade-off)',
+          data: vlVals,
+          borderColor: '#fcee09',
+          borderWidth: 2.5,
+          pointRadius: 0,
+          tension: 0,
+          fill: false,
+        },
+        {
+          label: 'V_U + Tc·D (M&M+tax)',
+          data: mmTaxVals,
+          borderColor: '#00d4ff',
+          borderWidth: 2,
+          borderDash: [6, 4],
+          pointRadius: 0,
+          tension: 0,
+          fill: false,
+        },
+        {
+          label: 'Distress cost',
+          data: distVals,
+          borderColor: '#ff2a6d',
+          borderWidth: 2,
+          pointRadius: 0,
+          tension: 0,
+          fill: false,
+        },
+        {
+          label: 'D*',
+          data: dstarDataset,
+          type: 'line',
+          borderColor: 'rgba(255,255,255,0.35)',
+          borderWidth: 1.5,
+          borderDash: [4, 4],
+          pointRadius: 0,
+          fill: false,
+          parsing: { xAxisKey: 'x', yAxisKey: 'y' },
+        }
+      ]
+    },
+    options: {
+      animation: false,
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { top: 10, right: 10 } },
+      scales: {
+        x: {
+          type: 'linear',
+          title: {
+            display: true,
+            text: 'Debt level D ($M)',
+            color: '#686888',
+            font: { family: "'Share Tech Mono', monospace", size: 11 }
+          },
+          min: 0, max: VU,
+          ticks: { color: '#686888', font: { family: "'Share Tech Mono', monospace", size: 10 }, maxTicksLimit: 8 },
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          border: { color: 'rgba(255,255,255,0.1)' }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Value ($M)',
+            color: '#686888',
+            font: { family: "'Share Tech Mono', monospace", size: 11 }
+          },
+          ticks: { color: '#686888', font: { family: "'Share Tech Mono', monospace", size: 10 } },
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          border: { color: 'rgba(255,255,255,0.1)' }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0d0d1a',
+          borderColor: 'rgba(252,238,9,0.3)',
+          borderWidth: 1,
+          titleColor: '#fcee09',
+          bodyColor: '#c8cde8',
+          titleFont: { family: "'Share Tech Mono', monospace" },
+          bodyFont:  { family: "'Share Tech Mono', monospace" },
+          callbacks: {
+            title: items => `D = $${Number(items[0].label).toFixed(2)}M`,
+            label: item => {
+              if(item.dataset.label === 'D*') return null;
+              return ` ${item.dataset.label}: $${Number(item.raw).toFixed(2)}M`;
+            }
+          },
+          filter: item => item.dataset.label !== 'D*'
+        }
+      }
+    }
+  });
+}
+
+/* ── Wait for Chart.js to load, then init defaults ─────────── */
+(function waitForChart(){
+  if(typeof Chart !== 'undefined'){
+    // Draw initial state once DOM is ready
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', () => { optDraw(); mmUpdate(); });
+    } else {
+      optDraw();
+      mmUpdate();
+    }
+  } else {
+    setTimeout(waitForChart, 120);
+  }
+})();
+
+/* ═══ DUPONT + FCF ═══ */
+/* ════════════════════════════════
+   DUPONT CALCULATOR
+════════════════════════════════ */
+async function calcDuPont(){
+  const rev    = parseFloat(document.getElementById('dp-rev').value);
+  const ni     = parseFloat(document.getElementById('dp-ni').value);
+  const assets = parseFloat(document.getElementById('dp-assets').value);
+  const equity = parseFloat(document.getElementById('dp-equity').value);
+
+  const resEl  = document.getElementById('dp-result');
+  const descEl = document.getElementById('dp-desc');
+
+  if([rev,ni,assets,equity].some(isNaN) || rev===0 || assets===0 || equity===0){
+    resEl.textContent  = 'ERR';
+    descEl.textContent = 'Fill all four fields (non-zero)';
+    return;
+  }
+
+  const pm  = ni / rev;          // profit margin
+  const at  = rev / assets;      // asset turnover
+  const em  = assets / equity;   // equity multiplier
+  const roe = pm * at * em;      // = ni/equity
+
+  /* Big ROE display */
+  resEl.textContent  = (roe*100).toFixed(2) + '%';
+  descEl.textContent = 'Return on Equity (DuPont verified)';
+
+  /* Component rows */
+  document.getElementById('dp-pm-val').textContent  = (pm*100).toFixed(2)  + '%';
+  document.getElementById('dp-pm-desc').textContent = `Net Income / Revenue = $${ni.toFixed(0)}M / $${rev.toFixed(0)}M`;
+  document.getElementById('dp-at-val').textContent  = at.toFixed(3)  + '×';
+  document.getElementById('dp-at-desc').textContent = `Revenue / Assets = $${rev.toFixed(0)}M / $${assets.toFixed(0)}M`;
+  document.getElementById('dp-em-val').textContent  = em.toFixed(3)  + '×';
+  document.getElementById('dp-em-desc').textContent = `Assets / Equity = $${assets.toFixed(0)}M / $${equity.toFixed(0)}M`;
+
+  document.getElementById('dp-components').style.display = '';
+  document.getElementById('dp-insight').style.display     = '';
+  document.getElementById('dp-waterfall').style.display   = '';
+
+  /* Waterfall bars — normalize so the largest component = 80% width */
+  /* We display absolute values for bar widths, annotated with signs */
+  const vals   = [Math.abs(pm), Math.abs(at), Math.abs(em)];
+  const maxVal = Math.max(...vals);
+  const scale  = v => maxVal > 0 ? Math.min(98, (v/maxVal)*80 + 5) : 5;
+
+  const barPm = document.getElementById('dp-bar-pm');
+  const barAt = document.getElementById('dp-bar-at');
+  const barEm = document.getElementById('dp-bar-em');
+
+  /* Allow a small RAF so clip-path transition fires */
+  requestAnimationFrame(()=>{
+    barPm.style.width = scale(Math.abs(pm)) + '%';
+    barPm.textContent = (pm*100).toFixed(2) + '%';
+    barAt.style.width = scale(Math.abs(at)) + '%';
+    barAt.textContent = at.toFixed(3) + '×';
+    barEm.style.width = scale(Math.abs(em)) + '%';
+    barEm.textContent = em.toFixed(3) + '×';
+  });
+
+  /* LaTeX identity */
+  const mathEl = document.getElementById('dp-math');
+  const fN = (n,d=2) => isNaN(n)||!isFinite(n) ? '{-}' : n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+
+  mathEl.innerHTML = `
+$$\\text{ROE} = \\underbrace{\\frac{\\text{NI}}{\\text{Rev}}}_{\\text{Profit Margin}} \\times \\underbrace{\\frac{\\text{Rev}}{\\text{Assets}}}_{\\text{Asset Turnover}} \\times \\underbrace{\\frac{\\text{Assets}}{\\text{Equity}}}_{\\text{Equity Multiplier}}$$
+
+$$\\text{ROE} = \\frac{\\$${fN(ni,0)}\\text{M}}{\\$${fN(rev,0)}\\text{M}} \\times \\frac{\\$${fN(rev,0)}\\text{M}}{\\$${fN(assets,0)}\\text{M}} \\times \\frac{\\$${fN(assets,0)}\\text{M}}{\\$${fN(equity,0)}\\text{M}}$$
+
+$$= \\underbrace{${fN(pm*100,2)}\\%}_{\\substack{\\text{cyan}\\\\\\text{PM}}} \\times \\underbrace{${fN(at,3)}\\times}_{\\substack{\\text{yellow}\\\\\\text{AT}}} \\times \\underbrace{${fN(em,3)}\\times}_{\\substack{\\text{magenta}\\\\\\text{EM}}} = \\boxed{${fN(roe*100,2)}\\%}$$
+  `.trim();
+
+  if(window.mjTypeset){
+    await mjTypeset(mathEl);
+  } else if(window.MathJax && MathJax.typesetPromise){
+    try{ await MathJax.typesetPromise([mathEl]); }catch(e){}
+  }
+}
+
+/* ─── live sub-totals (fires on every input) ─── */
+function fcfLive(){
+  const g  = id => parseFloat(document.getElementById(id).value);
+  const sv = (id, v) => { document.getElementById(id).textContent = isNaN(v)||!isFinite(v) ? '—' : '$'+Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+'M'+(v<0?' (−)':''); };
+
+  const ebit = g('fcf-ebit'), tax = g('fcf-tax')/100;
+  const nopat = !isNaN(ebit)&&!isNaN(tax) ? ebit*(1-tax) : NaN;
+  sv('fcf-nopat-live', nopat);
+
+  const ca  = g('fcf-ca'),  cl  = g('fcf-cl'),  cash  = g('fcf-cash'),  std  = g('fcf-std');
+  const nowc = !isNaN(ca)&&!isNaN(cl)&&!isNaN(cash)&&!isNaN(std) ? (ca-cash)-(cl-std) : NaN;
+  sv('fcf-nowc-live', nowc);
+
+  const ppe1 = g('fcf-ppe1'), ppe0 = g('fcf-ppe0');
+  const dppe = !isNaN(ppe1)&&!isNaN(ppe0) ? ppe1-ppe0 : NaN;
+  sv('fcf-dppe-live', dppe);
+
+  const ca0 = g('fcf-ca0'), cl0 = g('fcf-cl0'), cash0 = g('fcf-cash0'), std0 = g('fcf-std0');
+  const nowc0 = !isNaN(ca0)&&!isNaN(cl0)&&!isNaN(cash0)&&!isNaN(std0) ? (ca0-cash0)-(cl0-std0) : NaN;
+  sv('fcf-nowc0-live', nowc0);
+
+  const dnowc = !isNaN(nowc)&&!isNaN(nowc0) ? nowc-nowc0 : NaN;
+  sv('fcf-dnowc-live', dnowc);
+}
+
+/* ─── main compute ─── */
+async function calcFCF(){
+  const g = id => parseFloat(document.getElementById(id).value);
+
+  const ebit  = g('fcf-ebit');
+  const tax   = g('fcf-tax') / 100;
+  const ca    = g('fcf-ca');  const cl  = g('fcf-cl');  const cash  = g('fcf-cash');  const std  = g('fcf-std');
+  const ppe1  = g('fcf-ppe1'); const ppe0 = g('fcf-ppe0');
+  const ca0   = g('fcf-ca0'); const cl0 = g('fcf-cl0'); const cash0 = g('fcf-cash0'); const std0 = g('fcf-std0');
+
+  const resEl  = document.getElementById('fcf-result');
+  const descEl = document.getElementById('fcf-desc');
+
+  const required = [ebit, tax, ca, cl, cash, std, ppe1, ppe0, ca0, cl0, cash0, std0];
+  if(required.some(isNaN)){
+    resEl.textContent  = 'ERR';
+    descEl.textContent = 'Complete all steps first';
+    return;
+  }
+
+  /* Step 1 */
+  const nopat = ebit * (1 - tax);
+
+  /* Steps 2 & 4 */
+  const nowc  = (ca  - cash)  - (cl  - std);
+  const nowc0 = (ca0 - cash0) - (cl0 - std0);
+  const dnowc = nowc - nowc0;
+
+  /* Step 3 */
+  const dppe  = ppe1 - ppe0;
+
+  /* Step 5 */
+  const dtnoc = dppe + dnowc;
+  const fcf   = nopat - dtnoc;
+
+  /* ── Big number display ── */
+  const sign = fcf >= 0 ? '+' : '−';
+  resEl.textContent  = sign + ' $' + Math.abs(fcf).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) + 'M';
+  resEl.style.color  = fcf >= 0 ? 'var(--cyan)' : 'var(--mag)';
+  resEl.style.textShadow = fcf >= 0 ? 'var(--cg)' : 'var(--mg)';
+  descEl.textContent = 'Free Cash Flow — ' + (fcf>=0 ? 'Cash Generator' : 'Cash Consumer (growth phase?)');
+
+  /* ── Waterfall table ── */
+  const fmt = v => {
+    const s = v < 0 ? '−' : '+';
+    return s + ' $' + Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) + 'M';
+  };
+  const clsOf = v => v >= 0 ? 'pos' : 'neg';
+
+  const wf = id => document.getElementById(id);
+  wf('wf-nopat').textContent  = fmt(nopat);  wf('wf-nopat').className  = 'fcf-wf-val ' + clsOf(nopat);
+  wf('wf-nowc').textContent   = fmt(nowc);   wf('wf-nowc').className   = 'fcf-wf-val ' + clsOf(nowc);
+  wf('wf-nowc0').textContent  = fmt(nowc0);  wf('wf-nowc0').className  = 'fcf-wf-val ' + clsOf(nowc0);
+  wf('wf-dnowc').textContent  = fmt(dnowc);  wf('wf-dnowc').className  = 'fcf-wf-val ' + clsOf(dnowc);
+  wf('wf-dppe').textContent   = fmt(dppe);   wf('wf-dppe').className   = 'fcf-wf-val ' + clsOf(dppe);
+  wf('wf-dtnoc').textContent  = fmt(dtnoc);  wf('wf-dtnoc').className  = 'fcf-wf-val ' + clsOf(dtnoc);
+  wf('wf-fcf').textContent    = fmt(fcf);    // always yellow via CSS class
+
+  document.getElementById('fcf-waterfall').style.display = '';
+  document.getElementById('fcf-insight').style.display   = '';
+
+  /* ── LaTeX full derivation ── */
+  const fN = (v,d=2) => v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+  const sN = (v,d=2) => (v<0?'-':'+')+fN(Math.abs(v),d);
+
+  const mathEl = document.getElementById('fcf-math');
+  mathEl.innerHTML = `
+$$\\textbf{Step 1:}\\quad \\NOPAT = \\text{EBIT}\\times(1-T) = \\$${fN(ebit)}\\text{M}\\times(1-${(tax*100).toFixed(0)}\\%) = \\$${fN(nopat)}\\text{M}$$
+
+$$\\textbf{Step 2:}\\quad \\NOWC_t = (\\text{CA}-\\text{Cash})-(\\text{CL}-\\text{STD}) = (${fN(ca)}-${fN(cash)})-(${fN(cl)}-${fN(std)}) = \\$${fN(nowc)}\\text{M}$$
+
+$$\\textbf{Step 3:}\\quad \\Delta\\text{PPE} = ${fN(ppe1)} - ${fN(ppe0)} = \\$${fN(dppe)}\\text{M}$$
+
+$$\\textbf{Step 4:}\\quad \\NOWC_{t-1} = \\$${fN(nowc0)}\\text{M} \\implies \\Delta\\NOWC = ${fN(nowc)} - ${fN(nowc0)} = \\$${fN(dnowc)}\\text{M}$$
+
+$$\\textbf{Step 5:}\\quad \\Delta\\TNOC = \\Delta\\text{PPE} + \\Delta\\NOWC = ${fN(dppe)} + ${fN(dnowc)} = \\$${fN(dtnoc)}\\text{M}$$
+
+$$\\boxed{\\FCF = \\NOPAT - \\Delta\\TNOC = ${fN(nopat)} - (${fN(dtnoc)}) = \\$${fN(fcf)}\\text{M}}$$
+  `.trim();
+
+  if(window.mjTypeset){
+    await mjTypeset(mathEl);
+  } else if(window.MathJax && MathJax.typesetPromise){
+    try{ await MathJax.typesetPromise([mathEl]); }catch(e){}
+  }
+}
+
+</script>
 </body>
 </html>
