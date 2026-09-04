@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore corporate finance through interactive cash-flow timelines, explained calculators, and a course-independent concept atlas.">
+  <meta name="theme-color" content="#20294b"><title>Corpo — Corporate Finance Lab</title>
+  <link rel="icon" type="image/svg+xml" href="./mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the finance lab</a>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#lab"><svg aria-hidden="true" viewBox="0 0 36 36"><path d="M27 7H11L4 18l7 11h16l-7-11z" fill="currentColor"/><path d="M29 13l4 5-4 5h-7l-3-5 3-5z" fill="#ff9876"/></svg>corpo</a>
+    <p class="brand-caption">The corporate finance lab</p>
+    <nav aria-label="Main navigation">
+      <a href="#lab" data-view="lab"><span class="nav-icon">⌁</span>The playground<span class="nav-badge">10</span></a>
+      <a href="#concepts" data-view="concepts"><span class="nav-icon">▦</span>Concept atlas</a>
+      <a href="#formulas" data-view="formulas"><span class="nav-icon">ƒ</span>Formula desk</a>
+      <a href="#valuation" data-view="valuation"><span class="nav-icon">◈</span>Valuation guide</a>
+      <a href="#resources" data-view="resources"><span class="nav-icon">↗</span>Reading room</a>
+    </nav>
+    <div class="side-note"><span class="orbit-icon">◌</span><h2>Understand the why.</h2><p>Move the numbers.<br>See what changes.<br>Make the connection.</p></div>
+    <div class="sidebar-footer"><span class="status-dot"></span>Independent learning, open to all.<p>By Dr. Ian Helfrich</p></div>
+  </aside>
+  <div class="page">
+    <header class="topbar"><button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button><span id="breadcrumb">The playground <span>/</span> Time value of money</span><span class="top-note">From intuition to calculation.</span></header>
+    <main id="main" tabindex="-1"></main>
+    <footer class="page-footer"><span>Corpo / Corporate Finance Lab</span><span>Educational models. Not investment advice.</span></footer>
+  </div>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>
