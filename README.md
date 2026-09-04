@@ -17,6 +17,7 @@ Open `http://127.0.0.1:4176/lab/`.
 ```sh
 npm run check
 npm test
+npm run build
 ```
 
 The finance engine is separated from the interface in `lab/finance.mjs`, so
